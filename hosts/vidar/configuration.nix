@@ -34,6 +34,7 @@
   environment.systemPackages = with pkgs; [
     vim
     curl
+    tmux
   ];
 
   system.stateVersion = "25.05";
