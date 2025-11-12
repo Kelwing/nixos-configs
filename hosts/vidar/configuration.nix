@@ -35,6 +35,7 @@
     vim
     curl
     tmux
+    git
   ];
 
   system.stateVersion = "25.05";
