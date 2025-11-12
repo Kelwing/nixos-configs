@@ -16,6 +16,7 @@
       openFirewall = true;
       maxPlayers = 10;
       messageOfTheDay = "Welcome to Kelwing's Terraria Server!";
+      worldPath = "/var/lib/terraria/world1.wld";
     };
   };
 }
