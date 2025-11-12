@@ -16,7 +16,7 @@
 
   # Flake outputs
   outputs =
-  { self, ... }@inputs:
+  { self, comin, ... }@inputs:
   let
   # Change this if you're building for a system type other than x86 AMD Linux
   system = "x86_64-linux";
