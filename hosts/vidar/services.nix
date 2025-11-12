@@ -25,7 +25,7 @@
 
     kelwing-homepage = {
       enable = true;
-      virtualHost = "kelwing.dev";
+      virtualHost = "kelw.ing";
       extraVirtualHostConfig = {
         addSSL = true;
         enableACME = true;
