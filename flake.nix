@@ -12,11 +12,12 @@
       url = "github:nlewo/comin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    kelwing-homepage.url = "github:Kelwing/kelwing.dev";
   };
 
   # Flake outputs
   outputs =
-  { self, comin, ... }@inputs:
+  { self, comin, kelwing-homepage, ... }@inputs:
   let
   # Change this if you're building for a system type other than x86 AMD Linux
   system = "x86_64-linux";
@@ -28,6 +29,7 @@
     modules = [
       inputs.determinate.nixosModules.default
       comin.nixosModules.comin
+      kelwing-homepage.nixosModules.default
       ({...}: {
         services.comin = {
           enable = true;

@@ -23,6 +23,7 @@
     hostName = "vidar";
     firewall = {
       enable = true;
+      allowedTCPPorts = [ 80 443 ];
     };
   };
 
@@ -37,6 +38,11 @@
     tmux
     git
   ];
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "kelwing@kelnet.org";
+  };
 
   system.stateVersion = "25.05";
 }
