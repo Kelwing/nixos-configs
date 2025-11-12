@@ -2,6 +2,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./services.nix
     ../../common/users.nix
   ];
 
@@ -34,17 +35,6 @@
     vim
     curl
   ];
-
-  services = {
-    openssh = {
-      enable = true;
-      settings = {
-        PermitRootLogin = "no";
-        PasswordAuthentication = false;
-        KbdInteractiveAuthentication = false;
-      };
-    };
-  };
 
   system.stateVersion = "25.05";
 }
