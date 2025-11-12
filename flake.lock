@@ -142,6 +142,24 @@
         "url": "https://flakehub.com/f/cachix/git-hooks.nix/0.1.941"
       }
     },
+    "kelwing-homepage": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1762968300,
+        "narHash": "sha256-GgzbVVC9KSdHyBXLqKEjbseGmsU6slF4B5I5KCR099Y=",
+        "owner": "Kelwing",
+        "repo": "kelwing.dev",
+        "rev": "8ae47073f4b2e94a8d388ad972af4e95d24d08ec",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Kelwing",
+        "repo": "kelwing.dev",
+        "type": "github"
+      }
+    },
     "nix": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -211,6 +229,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1762844143,
+        "narHash": "sha256-SlybxLZ1/e4T2lb1czEtWVzDCVSTvk9WLwGhmxFmBxI=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "9da7f1cf7f8a6e2a7cb3001b048546c92a8258b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1762756533,
         "narHash": "sha256-HiRDeUOD1VLklHeOmaKDzf+8Hb7vSWPVFcWwaTrpm+U=",
         "rev": "c2448301fb856e351aab33e64c33a3fc8bcf637d",
@@ -227,7 +261,8 @@
       "inputs": {
         "comin": "comin",
         "determinate": "determinate",
-        "nixpkgs": "nixpkgs_2"
+        "kelwing-homepage": "kelwing-homepage",
+        "nixpkgs": "nixpkgs_3"
       }
     }
   },
