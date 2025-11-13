@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
   workflow_dispatch:
 
 jobs:
@@ -42,6 +47,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Free up disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo docker image prune --all --force
+          df -h
+
       - name: Install Nix
         uses: cachix/install-nix-action@v24
         with:
@@ -50,21 +63,29 @@ jobs:
             accept-flake-config = true
             max-jobs = auto
             cores = 0
+            # Avoid issues with building in containers
+            filter-syscalls = false
+            # Keep builds deterministic
+            sandbox = true
 
       - name: Setup Cachix
         uses: cachix/cachix-action@v14
         with:
           name: ${{ secrets.CACHIX_CACHE_NAME }}
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-          # Optional: Pull from your cache before building
-          useDaemon: true
+          # Don't use daemon mode - we'll push explicitly after build completes
+          useDaemon: false
 
       - name: Build NixOS configuration for ${{ matrix.host }}
         run: |
           echo "Building configuration for host: ${{ matrix.host }}"
+          # Build and realize the full system closure
           nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel \
             --print-build-logs \
-            --fallback
+            --fallback \
+            --no-link
+
+          echo "Build completed successfully"
 
       - name: Get build output path
         id: build-path
@@ -76,9 +97,19 @@ jobs:
       - name: Push to Cachix
         run: |
           echo "Pushing build closure to Cachix..."
-          # The cachix-action automatically pushes, but we can be explicit
-          nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel \
-            | cachix push ${{ secrets.CACHIX_CACHE_NAME }}
+          # Get the build output path
+          BUILD_OUTPUT=$(nix eval .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel --raw)
+
+          # Verify the path exists
+          if [ ! -e "$BUILD_OUTPUT" ]; then
+            echo "Error: Build output path does not exist: $BUILD_OUTPUT"
+            exit 1
+          fi
+
+          echo "Pushing closure for: $BUILD_OUTPUT"
+
+          # Push the full closure (all dependencies) to Cachix
+          cachix push ${{ secrets.CACHIX_CACHE_NAME }} "$BUILD_OUTPUT"
 
           echo "Successfully pushed ${{ matrix.host }} to Cachix"
 
