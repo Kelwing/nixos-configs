@@ -30,6 +30,7 @@
       inputs.determinate.nixosModules.default
       comin.nixosModules.comin
       kelwing-homepage.nixosModules.default
+      ./common/cache.nix
       ({...}: {
         services.comin = {
           enable = true;
