@@ -55,7 +55,7 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v31
         with:
-          nix_conf: |
+          extra_nix_config: |
             extra-substituters = https://install.determinate.systems
             extra-trusted-public-keys = cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM=
 
