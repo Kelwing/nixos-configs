@@ -1,0 +1,144 @@
+name: Build NixOS Configurations
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  # Determine which hosts need to be built
+  discover-hosts:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v24
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+            accept-flake-config = true
+
+      - name: Discover NixOS hosts
+        id: set-matrix
+        run: |
+          # Extract host names from flake.nix
+          hosts=$(nix eval .#nixosConfigurations --apply builtins.attrNames --json)
+          echo "matrix={\"host\":$hosts}" >> $GITHUB_OUTPUT
+          echo "Found hosts: $hosts"
+
+  # Build each host configuration
+  build-nixos:
+    needs: discover-hosts
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJson(needs.discover-hosts.outputs.matrix) }}
+      fail-fast: false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v24
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+            accept-flake-config = true
+            max-jobs = auto
+            cores = 0
+
+      - name: Setup Cachix
+        uses: cachix/cachix-action@v14
+        with:
+          name: ${{ secrets.CACHIX_CACHE_NAME }}
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+          # Optional: Pull from your cache before building
+          useDaemon: true
+
+      - name: Build NixOS configuration for ${{ matrix.host }}
+        run: |
+          echo "Building configuration for host: ${{ matrix.host }}"
+          nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel \
+            --print-build-logs \
+            --fallback
+
+      - name: Get build output path
+        id: build-path
+        run: |
+          BUILD_PATH=$(nix eval .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel --raw)
+          echo "path=$BUILD_PATH" >> $GITHUB_OUTPUT
+          echo "Build output path: $BUILD_PATH"
+
+      - name: Push to Cachix
+        run: |
+          echo "Pushing build closure to Cachix..."
+          # The cachix-action automatically pushes, but we can be explicit
+          nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel \
+            | cachix push ${{ secrets.CACHIX_CACHE_NAME }}
+
+          echo "Successfully pushed ${{ matrix.host }} to Cachix"
+
+      - name: Generate build metadata
+        if: success()
+        run: |
+          BUILD_PATH=$(nix eval .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel --raw)
+          cat > build-info-${{ matrix.host }}.json <<EOF
+          {
+            "host": "${{ matrix.host }}",
+            "build_path": "$BUILD_PATH",
+            "commit": "${{ github.sha }}",
+            "branch": "${{ github.ref_name }}",
+            "build_time": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "workflow_run": "${{ github.run_id }}",
+            "cachix_cache": "${{ secrets.CACHIX_CACHE_NAME }}"
+          }
+          EOF
+          cat build-info-${{ matrix.host }}.json
+
+      - name: Upload build artifact info
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-info-${{ matrix.host }}
+          path: build-info-${{ matrix.host }}.json
+          retention-days: 30
+
+  # Summary job
+  build-summary:
+    needs: build-nixos
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Download all build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: build-info
+
+      - name: Generate build summary
+        run: |
+          echo "# NixOS Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Host | Status | Build Path |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|--------|------------|" >> $GITHUB_STEP_SUMMARY
+
+          for info_file in build-info/*/build-info-*.json; do
+            if [ -f "$info_file" ]; then
+              host=$(jq -r '.host' "$info_file")
+              path=$(jq -r '.build_path' "$info_file")
+              echo "| $host | ✅ Success | \`$path\` |" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+
+          # Get cache name from first build info file
+          CACHE_NAME=$(jq -r '.cachix_cache' build-info/*/build-info-*.json 2>/dev/null | head -n1)
+          if [ -n "$CACHE_NAME" ] && [ "$CACHE_NAME" != "null" ]; then
+            echo "**Cachix Cache:** $CACHE_NAME" >> $GITHUB_STEP_SUMMARY
+          fi
