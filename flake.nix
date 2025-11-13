@@ -30,7 +30,13 @@
       inputs.determinate.nixosModules.default
       comin.nixosModules.comin
       kelwing-homepage.nixosModules.default
-      ./common/cache.nix
+      ({...}: {
+        nix.settings = {
+          substituters = ["https://lofn.cachix.org"];
+          trusted-substituters = ["https://lofn.cachix.org"];
+          trusted-public-keys = ["lofn.cachix.org-1:N5d/IDXgSnc4ORB8TpiggU9Wo/VpiWSqrUkE424uBqc="];
+        };
+      })
       ({...}: {
         services.comin = {
           enable = true;
