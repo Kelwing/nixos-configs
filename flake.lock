@@ -245,11 +245,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1763154850,
-        "narHash": "sha256-joDJ2olQ1MApCXxhT/aRbJaQHYlq94rmufzQCrXb+pQ=",
+        "lastModified": 1763155081,
+        "narHash": "sha256-NMWV3pY6EiGM3sG49XaDVhEKI3ks+2CfQZhccfyr6eo=",
         "owner": "kelwing",
         "repo": "nixpkgs",
-        "rev": "fbc14c4d421f86ec935a16b67831d4f96576e56d",
+        "rev": "f47dfc1e32d48b20d41c5476c2d39490d3239626",
         "type": "github"
       },
       "original": {
