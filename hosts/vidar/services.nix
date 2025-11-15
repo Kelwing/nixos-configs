@@ -34,7 +34,7 @@
       noUPnP = true;
       openFirewall = true;
       extraSettings = {
-        difficulty = 3;
+        difficulty = 2;
         journeypermission_godmode = 0;
       };
       adminUsers = [ "kelwing" ];
