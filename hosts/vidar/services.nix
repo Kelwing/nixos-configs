@@ -23,5 +23,20 @@
         enableACME = true;
       };
     };
+
+    terraria-server = {
+      enable = true;
+      port = 7777;
+      maxPlayers = 16;
+      autoCreatedWorldSize = "medium";
+      messageOfTheDay = "Welcome to Kelwing's Terraria server!";
+      worldPath = /var/lib/terraria/world1.wld;
+      noUPnP = true;
+      openFirewall = true;
+      extraSettings = {
+        difficulty = 3;
+        journeypermission_godmode = 0;
+      };
+    };
   };
 }

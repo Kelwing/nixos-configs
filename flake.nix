@@ -13,11 +13,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     kelwing-homepage.url = "github:Kelwing/kelwing.dev";
+    terraria-server.url = "github:Kelwing/terraria-server";
   };
 
   # Flake outputs
   outputs =
-  { self, comin, kelwing-homepage, ... }@inputs:
+  { self, comin, kelwing-homepage, terraria-server, ... }@inputs:
   let
   # Change this if you're building for a system type other than x86 AMD Linux
   system = "x86_64-linux";
@@ -30,6 +31,7 @@
       inputs.determinate.nixosModules.default
       comin.nixosModules.comin
       kelwing-homepage.nixosModules.default
+      terraria-server.nixosModules.default
       ({...}: {
         nix.settings = {
           substituters = ["https://lofn.cachix.org"];
