@@ -30,7 +30,7 @@
       maxPlayers = 16;
       autoCreatedWorldSize = "medium";
       messageOfTheDay = "Welcome to Kelwing's Terraria server!";
-      worldPath = /var/lib/terraria/world1.wld;
+      worldPath = "/var/lib/terraria/world1.wld";
       noUPnP = true;
       openFirewall = true;
       extraSettings = {
