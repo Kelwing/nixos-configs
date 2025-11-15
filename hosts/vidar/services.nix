@@ -37,6 +37,7 @@
         difficulty = 3;
         journeypermission_godmode = 0;
       };
+      adminUsers = [ "kelwing" ];
     };
   };
 }
