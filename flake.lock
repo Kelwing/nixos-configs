@@ -285,11 +285,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1763223677,
-        "narHash": "sha256-Dll3r9AzdJ6MswlszXjwN9nis6/sTgjVW/Gg5YYJqsk=",
+        "lastModified": 1763226369,
+        "narHash": "sha256-zRCB3htMucHfafWlk8MTbjWbLUo/xiQ1yZkH6DfohqY=",
         "owner": "Kelwing",
         "repo": "terraria-server",
-        "rev": "ce0a82d576dff273c9c09e8c3b98ad8bbe05c4ef",
+        "rev": "2c8da1155af56cf1073b6d13c1feb8efa6e948cb",
         "type": "github"
       },
       "original": {
