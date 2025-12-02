@@ -56,8 +56,15 @@
 
   # secrets
   age.secrets = {
-    "scibot-config.toml".file = ../../secrets/scibot-config.toml.age;
-    "github-token".file = ../../secrets/github-token.age;
+    "scibot-config.toml" = {
+      file = ../../secrets/scibot-config.toml.age;
+      mode = "660";
+      user = "scibot";
+      group = "scibot";
+    };
+    "github-token" = {
+      file = ../../secrets/github-token.age;
+    };
   };
 
   system.stateVersion = "25.05";

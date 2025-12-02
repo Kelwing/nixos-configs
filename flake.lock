@@ -542,11 +542,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1764709190,
-        "narHash": "sha256-CnRQxU6qtUGXGkMFxyKDsfv/HLJtZ7FfceDz/GcMLKw=",
+        "lastModified": 1764709541,
+        "narHash": "sha256-pMR/7v3vUIukNwAhbLqTZvYa0evDlEYHkYGJTZ5RRjs=",
         "owner": "Kelwing",
         "repo": "scibot",
-        "rev": "7169a937fb7c38d6062c7f7bce4d3b4d624c3602",
+        "rev": "0600c9e12463537fabbf64ae4837acaa15445e4f",
         "type": "github"
       },
       "original": {
