@@ -16,7 +16,7 @@
     terraria-server.url = "github:Kelwing/terraria-server";
     flake-utils.url = "github:numtide/flake-utils";
     agenix.url = "github:ryantm/agenix";
-    scibot.url = "github:Kelwing/scibot";
+    scibot.url = "https://flakehub.com/f/Kelwing/scibot/0";
   };
 
   # Flake outputs

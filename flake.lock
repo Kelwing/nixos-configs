@@ -542,17 +542,16 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1764715035,
-        "narHash": "sha256-b8IgdMIhvarPhQuiVr7JyKE5mOT3+M3jxoBlTA/KJWA=",
-        "owner": "Kelwing",
-        "repo": "scibot",
-        "rev": "4b78959ecd06335b8f821fa2333c8ddc6b587af4",
-        "type": "github"
+        "lastModified": 1764715517,
+        "narHash": "sha256-XOtcE84U2Jf9Vasa/gXXeAP4Rt9t+kAVxy6X8eGcQpI=",
+        "rev": "be3e103eeeb1169a604ac091ad313c7472241050",
+        "revCount": 39,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/Kelwing/scibot/0.1.2/019ae140-a54e-79b1-9cbb-e7536e0b2d31/source.tar.gz"
       },
       "original": {
-        "owner": "Kelwing",
-        "repo": "scibot",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://flakehub.com/f/Kelwing/scibot/0"
       }
     },
     "systems": {
