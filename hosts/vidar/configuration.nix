@@ -59,7 +59,7 @@
     "scibot-config.toml" = {
       file = ../../secrets/scibot-config.toml.age;
       mode = "660";
-      user = "scibot";
+      owner = "scibot";
       group = "scibot";
     };
     "github-token" = {
