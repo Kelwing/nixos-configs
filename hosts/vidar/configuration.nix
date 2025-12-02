@@ -49,6 +49,11 @@
     defaults.email = "kelwing@kelnet.org";
   };
 
+  services.scibot = {
+    enable = true;
+    configFile = config.age.secrets."scibot-config.toml".path;
+  };
+
   # secrets
   age.secrets = {
     "scibot-config.toml".file = ../../secrets/scibot-config.toml.age;

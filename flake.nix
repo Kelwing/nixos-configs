@@ -16,11 +16,12 @@
     terraria-server.url = "github:Kelwing/terraria-server";
     flake-utils.url = "github:numtide/flake-utils";
     agenix.url = "github:ryantm/agenix";
+    scibot.url = "github:Kelwing/scibot";
   };
 
   # Flake outputs
   outputs =
-  { self, comin, kelwing-homepage, terraria-server, nixpkgs, flake-utils, agenix, ... }@inputs:
+  { self, comin, kelwing-homepage, terraria-server, nixpkgs, flake-utils, agenix, scibot, ... }@inputs:
   let
     system = "x86_64-linux";
     makeNixosSystem =
@@ -33,6 +34,7 @@
         comin.nixosModules.comin
         kelwing-homepage.nixosModules.default
         terraria-server.nixosModules.default
+        scibot.nixosModules.default
         agenix.nixosModules.default
         ({...}: {
           nix.settings = {
