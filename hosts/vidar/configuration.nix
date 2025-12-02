@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -7,8 +7,13 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
-  nix.settings = {
-    experimental-features = "nix-command flakes";
+  nix = {
+    settings = {
+      experimental-features = "nix-command flakes";
+    };
+    extraOptions = ''
+      !include ${config.age.secrets."github-token".path}
+    '';
   };
 
   boot = {
@@ -42,6 +47,12 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "kelwing@kelnet.org";
+  };
+
+  # secrets
+  age.secrets = {
+    "scibot-config.toml".file = ../secrets/scibot-config.toml.age;
+    "github-token".file = ../secrets/github-token.age;
   };
 
   system.stateVersion = "25.05";
