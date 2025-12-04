@@ -542,12 +542,12 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1764880947,
-        "narHash": "sha256-H1RC7PCwx9Jz6ZB9o9JjCS6wuDMfDyxQwuNSn56EVNM=",
-        "rev": "a059569782be3d4682e9bd278b48d8a33f436fcc",
-        "revCount": 50,
+        "lastModified": 1764881646,
+        "narHash": "sha256-nbs23oxxZVH9vewm9OjlLarXtJJhKR6CidzIH7ZFMUA=",
+        "rev": "d15a89e9c63606be4f2b798b48db5aebdfcf3b0a",
+        "revCount": 52,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/Kelwing/scibot/0.2.1/019aeb1b-f68d-763b-8a07-55d335512151/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/Kelwing/scibot/0.2.2/019aeb45-79d2-70f2-84fe-104f7586dd88/source.tar.gz"
       },
       "original": {
         "type": "tarball",
