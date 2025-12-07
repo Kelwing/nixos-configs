@@ -1,0 +1,52 @@
+name: Deploy NixOS Configuration
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy NixOS Configuration
+        id: deploy
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            sudo nixos-rebuild switch --flake github:Kelwing/nixos-configs --option tarball-ttl 0
+          capture_stdout: true
+
+      - name: Save Output to Summary
+        if: always()
+        run: |
+          echo "## NixOS Rebuild Output" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.deploy.outputs.stdout }}" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+          if [ -n "${{ steps.deploy.outputs.stderr }}" ]; then
+            echo "## Errors" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "${{ steps.deploy.outputs.stderr }}" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Save Deploy Log
+        if: always()
+        run: |
+          echo "${{ steps.deploy.outputs.stdout }}" > ${{ runner.temp }}/deploy-output.log
+          echo "${{ steps.deploy.outputs.stderr }}" >> ${{ runner.temp }}/deploy-output.log
+
+      - name: Upload Deploy Log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deploy-log-${{ github.run_id }}
+          path: ${{ runner.temp }}/deploy-output.log
+          retention-days: 30
