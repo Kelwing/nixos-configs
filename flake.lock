@@ -442,12 +442,12 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1765311797,
-        "narHash": "sha256-mSD5Ob7a+T2RNjvPvOA1dkJHGVrNVl8ZOrAwBjKBDQo=",
-        "rev": "09eb77e94fa25202af8f3e81ddc7353d9970ac1b",
-        "revCount": 903162,
+        "lastModified": 1765762245,
+        "narHash": "sha256-3iXM/zTqEskWtmZs3gqNiVtRTsEjYAedIaLL0mSBsrk=",
+        "rev": "c8cfcd6ccd422e41cc631a0b73ed4d5a925c393d",
+        "revCount": 903561,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.2511.903162%2Brev-09eb77e94fa25202af8f3e81ddc7353d9970ac1b/019b095a-7dde-7122-8fd5-afa2e9e17894/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.2511.903561%2Brev-c8cfcd6ccd422e41cc631a0b73ed4d5a925c393d/019b231b-8461-7fef-af86-fa7662ea16ad/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -542,11 +542,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1765501611,
-        "narHash": "sha256-6uEy9plJdKJh1Q55atu9pswY0q6pENekNQCNgtYNqEw=",
+        "lastModified": 1765909467,
+        "narHash": "sha256-+BpeTx1Anljr+BJuflUhny2iZksn7BKnedJ9cl6GQZs=",
         "owner": "StarCross-Industries",
         "repo": "scibot",
-        "rev": "427f1b30c67dd638112ceae86ce90aa6afb2a246",
+        "rev": "7b18a2051a0b75af12a685e5d332449397837f55",
         "type": "github"
       },
       "original": {
