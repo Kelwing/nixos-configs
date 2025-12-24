@@ -45,6 +45,7 @@
       httpServer = {
         enable = true;
       };
+      openFirewall = true;
       publicIp = "impostor.kelwing.dev";
       nginx = {
         enable = true;
