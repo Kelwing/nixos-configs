@@ -17,6 +17,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     agenix.url = "github:ryantm/agenix";
     scibot.url = "github:StarCross-Industries/scibot";
+    impostor.url = "github:Kelwing/impostor-flake";
   };
 
   # Flake outputs
@@ -30,6 +31,7 @@
       flake-utils,
       agenix,
       scibot,
+      impostor,
       ...
     }@inputs:
     let
@@ -41,10 +43,10 @@
           specialArgs = { inherit inputs; };
           modules = [
             inputs.determinate.nixosModules.default
-            comin.nixosModules.comin
             kelwing-homepage.nixosModules.default
             terraria-server.nixosModules.default
             scibot.nixosModules.default
+            impostor.nixosModule.default
             agenix.nixosModules.default
             (
               { ... }:
@@ -53,21 +55,6 @@
                   substituters = [ "https://lofn.cachix.org" ];
                   trusted-substituters = [ "https://lofn.cachix.org" ];
                   trusted-public-keys = [ "lofn.cachix.org-1:N5d/IDXgSnc4ORB8TpiggU9Wo/VpiWSqrUkE424uBqc=" ];
-                };
-              }
-            )
-            (
-              { ... }:
-              {
-                services.comin = {
-                  enable = true;
-                  remotes = [
-                    {
-                      name = "origin";
-                      url = "https://github.com/Kelwing/nixos-configs.git";
-                      branches.main.name = "main";
-                    }
-                  ];
                 };
               }
             )

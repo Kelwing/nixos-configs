@@ -39,5 +39,18 @@
       };
       adminUsers = [ "kelwing" ];
     };
+
+    impostor = {
+      enable = true;
+      httpServer = {
+        enable = true;
+      };
+      publicIp = "impostor.kelwing.dev";
+      nginx = {
+        enable = true;
+        virtualHost = "impostor.kelwing.dev";
+        useACME = true;
+      };
+    };
   };
 }
