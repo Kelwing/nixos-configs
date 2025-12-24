@@ -48,6 +48,9 @@
             scibot.nixosModules.default
             impostor.nixosModules.default
             agenix.nixosModules.default
+            {
+              nixpkgs.overlays = [ impostor.overlays.default ];
+            }
             (
               { ... }:
               {
