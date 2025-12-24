@@ -46,7 +46,7 @@
             kelwing-homepage.nixosModules.default
             terraria-server.nixosModules.default
             scibot.nixosModules.default
-            impostor.nixosModule.default
+            impostor.nixosModules.default
             agenix.nixosModules.default
             (
               { ... }:
