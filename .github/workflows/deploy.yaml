@@ -6,6 +6,10 @@ on:
     types: [scibot-release]
 
 jobs:
+  update-lock-file:
+    uses: Kelwing/nixos-configs/.github/workflows/update-flake-lock.yaml@main
+    secrets: inherit
+
   deploy:
     runs-on: ubuntu-latest
 

@@ -1,0 +1,28 @@
+name: "Update Flake Lock"
+description: "Update the flake lock file for a given NixOS configuration"
+runs:
+  using: composite
+  steps:
+    - name: Update flake.lock
+      shell: bash
+      run: nix flake update
+
+    - name: Check for changes
+      id: changes
+      shell: bash
+      run: |
+        if git diff --quiet flake.lock; then
+          echo "changed=false" >> "$GITHUB_OUTPUT"
+        else
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+        fi
+
+    - name: Commit and push changes
+      if: steps.changes.outputs.changed == 'true'
+      shell: bash
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add flake.lock
+        git commit -m "build(deps): update flake.lock"
+        git push
