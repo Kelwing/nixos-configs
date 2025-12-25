@@ -46,10 +46,10 @@
         enable = true;
       };
       openFirewall = true;
-      publicIp = "impostor.kelwing.dev";
+      publicIp = "impostor.kelw.ing";
       nginx = {
         enable = true;
-        virtualHost = "impostor.kelwing.dev";
+        virtualHost = "impostor.kelw.ing";
         useACME = true;
       };
     };
