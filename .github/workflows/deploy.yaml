@@ -7,6 +7,8 @@ on:
 
 jobs:
   update-lock-file:
+    permissions:
+      contents: write
     uses: Kelwing/nixos-configs/.github/workflows/update-flake-lock.yaml@main
     secrets: inherit
 
