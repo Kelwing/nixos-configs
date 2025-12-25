@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: ./update-flake-lock.yaml
+      - uses: .github/workflows/update-flake-lock.yaml
       - name: Deploy NixOS Configuration
         id: deploy
         uses: appleboy/ssh-action@v1
