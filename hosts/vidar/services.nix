@@ -53,5 +53,10 @@
         useACME = true;
       };
     };
+
+    owncast = {
+      enable = true;
+      openFirewall = true;
+    };
   };
 }
