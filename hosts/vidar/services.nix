@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   services = {
     openssh = {
@@ -13,6 +13,14 @@
 
     nginx = {
       enable = true;
+      virtualHosts."stream.kelw.ing" = {
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString config.services.owncast.port}";
+          recommendedProxySettings = true;
+        };
+        forceSSL = true;
+        enableACME = true;
+      };
     };
 
     kelwing-homepage = {
