@@ -503,11 +503,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1768062266,
-        "narHash": "sha256-PgY0/f+8OOSKWLJvP4a+svbfW04dUpc8fUKVkmcqg6M=",
+        "lastModified": 1768063290,
+        "narHash": "sha256-BVtypeDYoVUwghz5uyr2Whs/mVUAjoRxNL42EKj9J+M=",
         "owner": "Kelwing",
         "repo": "AmongUsLauncherAPI",
-        "rev": "7f9e6c54041eb376bbf2a086bb8c9b6ec3f575b8",
+        "rev": "eeb469507d876cce517a1b7c59fe22ea0deedb35",
         "type": "github"
       },
       "original": {
