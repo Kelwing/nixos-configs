@@ -28,7 +28,10 @@
     hostName = "vidar";
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 80 443 ];
+      allowedTCPPorts = [
+        80
+        443
+      ];
     };
   };
 
@@ -64,6 +67,10 @@
     };
     "github-token" = {
       file = ../../secrets/github-token.age;
+    };
+    "launcher-api-config.json" = {
+      file = ../../secrets/launcher-api-config.json.age;
+      mode = "604";
     };
   };
 

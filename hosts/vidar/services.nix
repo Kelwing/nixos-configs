@@ -66,5 +66,10 @@
       enable = true;
       openFirewall = true;
     };
+
+    launcherapi = {
+      enable = true;
+      configFile = config.age.secrets."launcher-api-config.json".path;
+    };
   };
 }

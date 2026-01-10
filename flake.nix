@@ -18,6 +18,7 @@
     agenix.url = "github:ryantm/agenix";
     scibot.url = "github:StarCross-Industries/scibot";
     impostor.url = "github:Kelwing/impostor-flake";
+    launcher.url = "github:Kelwing/AmongUsLauncherAPI";
   };
 
   # Flake outputs
@@ -32,6 +33,7 @@
       agenix,
       scibot,
       impostor,
+      launcher,
       ...
     }@inputs:
     let
@@ -48,6 +50,7 @@
             scibot.nixosModules.default
             impostor.nixosModules.default
             agenix.nixosModules.default
+            launcher.nixosModules.default
             {
               nixpkgs.overlays = [ impostor.overlays.default ];
             }
