@@ -71,11 +71,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1767852242,
-        "narHash": "sha256-rdRskIePpjyo6cLG7Gdi84QrmFrtC7Y4AALQfgCoqcw=",
+        "lastModified": 1768028929,
+        "narHash": "sha256-HzPyeo0B2wCMToYNUPfBA0Q4UB8mlgj7XgCRBlV9sDU=",
         "owner": "nlewo",
         "repo": "comin",
-        "rev": "7c80beba79c90584e08757db9345e3d3ff044a4c",
+        "rev": "b26f456f23aa3f515140cf74ca8eba2b45851e44",
         "type": "github"
       },
       "original": {
@@ -503,11 +503,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1768020682,
-        "narHash": "sha256-0QuHYFEHuEteGn8A9XzZ01MwL3TQ48+aTwpof3eaOOs=",
+        "lastModified": 1768062028,
+        "narHash": "sha256-7YKmNBWk5hYein6DChwK1dQ8sPwxJ7EBk9zI7CzZkfU=",
         "ref": "refs/heads/main",
-        "rev": "bde259a9ba359051bd1231b282edaea59f73fdb5",
-        "revCount": 7,
+        "rev": "3bf89f64bed6ba2be2f7520713606a5cb9f3bda0",
+        "revCount": 8,
         "type": "git",
         "url": "ssh://git@github.com/Kelwing/AmongUsLauncherAPI.git"
       },
