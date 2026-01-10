@@ -70,6 +70,11 @@
     launcherapi = {
       enable = true;
       configFile = config.age.secrets."launcher-api-config.json".path;
+      nginx = {
+        enable = true;
+        virtualHost = "amongus.kelw.ing";
+        useACME = true;
+      };
     };
   };
 }
