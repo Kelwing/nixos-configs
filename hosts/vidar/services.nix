@@ -70,6 +70,7 @@
     launcherapi = {
       enable = true;
       configFile = config.age.secrets."launcher-api-config.json".path;
+      listenPort = 5050;
       nginx = {
         enable = true;
         virtualHost = "amongus.kelw.ing";
