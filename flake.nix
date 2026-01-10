@@ -18,7 +18,7 @@
     agenix.url = "github:ryantm/agenix";
     scibot.url = "github:StarCross-Industries/scibot";
     impostor.url = "github:Kelwing/impostor-flake";
-    launcher.url = "github:Kelwing/AmongUsLauncherAPI";
+    launcher.url = "git+ssh://git@github.com/Kelwing/AmongUsLauncherAPI.git";
   };
 
   # Flake outputs

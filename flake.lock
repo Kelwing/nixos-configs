@@ -503,17 +503,17 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1768004540,
-        "narHash": "sha256-NFuQmC6tTZn3TMbwehykvJM8TpStJyb1XgqejPBi8bE=",
-        "owner": "Kelwing",
-        "repo": "AmongUsLauncherAPI",
-        "rev": "5df33fcc93d6d70248248ed8f8b2a87ad30b0def",
-        "type": "github"
+        "lastModified": 1768017750,
+        "narHash": "sha256-SHnjFTsJZHGpoGC2n2o0Hqjjzdp9++XcxXlSZ0Q8Pwc=",
+        "ref": "refs/heads/main",
+        "rev": "076a74e5340f4cc6eb3c505b03ba1dac758372e6",
+        "revCount": 4,
+        "type": "git",
+        "url": "ssh://git@github.com/Kelwing/AmongUsLauncherAPI.git"
       },
       "original": {
-        "owner": "Kelwing",
-        "repo": "AmongUsLauncherAPI",
-        "type": "github"
+        "type": "git",
+        "url": "ssh://git@github.com/Kelwing/AmongUsLauncherAPI.git"
       }
     },
     "nix": {
