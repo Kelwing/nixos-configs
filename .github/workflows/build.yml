@@ -1,0 +1,45 @@
+name: Build and deploy config
+
+on:
+  workflow_dispatch:
+  workflow_call:
+    secrets:
+      GH_TOKEN:
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  build-server-config:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: |
+            access-tokens = github.com=${{ secrets.GH_TOKEN }}
+
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+        name: Set up nix cache
+
+      - uses: webfactory/ssh-agent@v0.9.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Build config
+        run: |
+          echo "NIX_STORE_PATH=$(nix build .#vidar --print-out-paths)" >> $GITHUB_ENV
+
+      - name: Copy config to server
+        run: |
+          nix copy .#vidar --to ssh://${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+
+      - name: Apply config
+        run: |
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "${NIX_STORE_PATH}/bin/switch-to-configuration switch"
+
+

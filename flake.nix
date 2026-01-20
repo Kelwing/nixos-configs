@@ -54,16 +54,6 @@
             {
               nixpkgs.overlays = [ impostor.overlays.default ];
             }
-            (
-              { ... }:
-              {
-                nix.settings = {
-                  substituters = [ "https://lofn.cachix.org" ];
-                  trusted-substituters = [ "https://lofn.cachix.org" ];
-                  trusted-public-keys = [ "lofn.cachix.org-1:N5d/IDXgSnc4ORB8TpiggU9Wo/VpiWSqrUkE424uBqc=" ];
-                };
-              }
-            )
             configPath
           ];
         };
@@ -88,8 +78,11 @@
           packages = with pkgs; [
             agenix.packages.${system}.default
             nixfmt-rfc-style
+            nil
+            nixd
           ];
         };
+        packages.vidar = self.nixosConfigurations.vidar.config.system.build.toplevel;
       }
     );
 }
