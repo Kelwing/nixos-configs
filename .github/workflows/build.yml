@@ -36,7 +36,7 @@ jobs:
 
             - name: Build config
               run: |
-                  outpath=$(nix build .#vidar --no-link --json) | jq -r '.[].outputs.out'
+                  outpath=$(nix build .#vidar --no-link --json | jq -r '.[].outputs.out')
                   echo "::debug::Derivation output path: ${outpath}"
                   echo "NIX_STORE_PATH=${outpath}" >> $GITHUB_ENV
 
