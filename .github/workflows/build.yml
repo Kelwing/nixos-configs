@@ -46,4 +46,4 @@ jobs:
 
             - name: Apply config
               run: |
-                  ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "${NIX_STORE_PATH}/bin/switch-to-configuration switch"
+                  ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "sudo ${NIX_STORE_PATH}/bin/switch-to-configuration switch"
