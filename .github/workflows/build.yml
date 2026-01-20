@@ -1,45 +1,47 @@
 name: Build and deploy config
 
 on:
-  workflow_dispatch:
-  workflow_call:
-    secrets:
-      GH_TOKEN:
-        required: true
+    workflow_dispatch:
+    workflow_call:
+        secrets:
+            GH_TOKEN:
+                required: true
 
 jobs:
-  build-server-config:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
+    build-server-config:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            id-token: write
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v6
 
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@main
-        with:
-          extra-conf: |
-            access-tokens = github.com=${{ secrets.GH_TOKEN }}
+            - name: Install Nix
+              uses: DeterminateSystems/nix-installer-action@main
+              with:
+                  extra-conf: |
+                      access-tokens = github.com=${{ secrets.GH_TOKEN }}
 
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-        name: Set up nix cache
+            - uses: DeterminateSystems/magic-nix-cache-action@main
+              name: Set up nix cache
 
-      - uses: webfactory/ssh-agent@v0.9.1
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+            - uses: webfactory/ssh-agent@v0.9.1
+              with:
+                  ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Build config
-        run: |
-          echo "NIX_STORE_PATH=$(nix build .#vidar --print-out-paths)" >> $GITHUB_ENV
+            - name: Add server to authorized keys
+              run: |
+                  ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Copy config to server
-        run: |
-          nix copy .#vidar --to ssh://${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+            - name: Build config
+              run: |
+                  echo "NIX_STORE_PATH=$(nix build .#vidar --print-out-paths)" >> $GITHUB_ENV
 
-      - name: Apply config
-        run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "${NIX_STORE_PATH}/bin/switch-to-configuration switch"
+            - name: Copy config to server
+              run: |
+                  nix copy .#vidar --to ssh://${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
 
-
+            - name: Apply config
+              run: |
+                  ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "${NIX_STORE_PATH}/bin/switch-to-configuration switch"

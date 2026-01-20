@@ -11,9 +11,6 @@
     settings = {
       experimental-features = "nix-command flakes";
     };
-    extraOptions = ''
-      !include ${config.age.secrets."github-token".path}
-    '';
   };
 
   boot = {
@@ -64,9 +61,6 @@
       mode = "660";
       owner = "scibot";
       group = "scibot";
-    };
-    "github-token" = {
-      file = ../../secrets/github-token.age;
     };
     "launcher-api-config.json" = {
       file = ../../secrets/launcher-api-config.json.age;
