@@ -36,7 +36,9 @@ jobs:
 
             - name: Build config
               run: |
-                  echo "NIX_STORE_PATH=$(nix build .#vidar --print-out-paths)" >> $GITHUB_ENV
+                  outpath=$(nix build .#vidar --no-link --json) | jq -r '.[].outputs.out'
+                  echo "::debug::Derivation output path: ${outpath}"
+                  echo "NIX_STORE_PATH=${outpath}" >> $GITHUB_ENV
 
             - name: Copy config to server
               run: |
