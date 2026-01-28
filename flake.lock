@@ -585,20 +585,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_10": {
-      "locked": {
-        "lastModified": 1763049705,
-        "narHash": "sha256-A5LS0AJZ1yDPTa2fHxufZN++n8MCmtgrJDtxFxrH4S8=",
-        "rev": "3acb677ea67d4c6218f33de0db0955f116b7588c",
-        "revCount": 812778,
-        "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.2505.812778%2Brev-3acb677ea67d4c6218f33de0db0955f116b7588c/019a8263-2120-7f85-af93-fb3f83fc86b2/source.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://flakehub.com/f/NixOS/nixpkgs/0"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1761597516,
@@ -731,8 +717,7 @@
         "kelwing-homepage": "kelwing-homepage",
         "launcher": "launcher",
         "nixpkgs": "nixpkgs_7",
-        "scibot": "scibot",
-        "terraria-server": "terraria-server"
+        "scibot": "scibot"
       }
     },
     "rust-overlay": {
@@ -901,24 +886,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "terraria-server": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_10"
-      },
-      "locked": {
-        "lastModified": 1763226369,
-        "narHash": "sha256-zRCB3htMucHfafWlk8MTbjWbLUo/xiQ1yZkH6DfohqY=",
-        "owner": "Kelwing",
-        "repo": "terraria-server",
-        "rev": "2c8da1155af56cf1073b6d13c1feb8efa6e948cb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Kelwing",
-        "repo": "terraria-server",
         "type": "github"
       }
     }

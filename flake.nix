@@ -13,7 +13,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     kelwing-homepage.url = "github:Kelwing/kelwing.dev";
-    terraria-server.url = "github:Kelwing/terraria-server";
     flake-utils.url = "github:numtide/flake-utils";
     agenix.url = "github:ryantm/agenix";
     scibot.url = "github:StarCross-Industries/scibot";
@@ -27,7 +26,6 @@
       self,
       comin,
       kelwing-homepage,
-      terraria-server,
       nixpkgs,
       flake-utils,
       agenix,
@@ -46,7 +44,6 @@
           modules = [
             inputs.determinate.nixosModules.default
             kelwing-homepage.nixosModules.default
-            terraria-server.nixosModules.default
             scibot.nixosModules.default
             impostor.nixosModules.default
             agenix.nixosModules.default

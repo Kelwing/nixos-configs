@@ -32,20 +32,12 @@
       };
     };
 
-    terraria-server = {
+    terraria = {
       enable = true;
       port = 7777;
       maxPlayers = 16;
-      autoCreatedWorldSize = "medium";
-      messageOfTheDay = "Welcome to Kelwing's Terraria server!";
-      worldPath = "/var/lib/terraria/world1.wld";
-      noUPnP = true;
       openFirewall = true;
-      extraSettings = {
-        difficulty = 2;
-        journeypermission_godmode = 0;
-      };
-      adminUsers = [ "kelwing" ];
+      messageOfTheDay = "Hello gays";
     };
 
     impostor = {
