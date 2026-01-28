@@ -49,7 +49,10 @@
             agenix.nixosModules.default
             launcher.nixosModules.default
             {
-              nixpkgs.overlays = [ impostor.overlays.default ];
+              nixpkgs.overlays = [
+                impostor.overlays.default
+                self.overlays.terraria-server
+              ];
             }
             configPath
           ];
@@ -62,6 +65,18 @@
       # To check formatting:
       # git ls-files -z '*.nix' | xargs -0 -r nix develop --command nixfmt --check
       formatter.${system} = inputs.nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
+      overlays.terraria-server = final: prev: {
+        terraria-server = prev.terraria-server.overrideAttrs (
+          finalAttrs: previousAttrs: rec {
+            version = "1.4.5.0";
+            urlVersion = prev.lib.replaceStrings [ "." ] [ "" ] version;
+            src = prev.fetchurl {
+              url = "https://terraria.org/api/download/pc-dedicated-server/terraria-server-${urlVersion}.zip";
+              sha256 = "sha256-PRA7cCFL2WJlT5Bat24PSgs9rhLu4C2mu5zWbut3kdQ=";
+            };
+          }
+        );
+      };
     }
     // flake-utils.lib.eachDefaultSystem (
       system:
