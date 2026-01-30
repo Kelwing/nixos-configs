@@ -72,7 +72,7 @@
             urlVersion = prev.lib.replaceStrings [ "." ] [ "" ] version;
             src = prev.fetchurl {
               url = "https://terraria.org/api/download/pc-dedicated-server/terraria-server-${urlVersion}.zip";
-              sha256 = "sha256-PRA7cCFL2WJlT5Bat24PSgs9rhLu4C2mu5zWbut3kdQ=";
+              sha256 = "sha256-KY41D2fTvpBaXKbXZ3s3M3X52eMWiCRcPlCQJmqtCyM=";
             };
           }
         );
