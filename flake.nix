@@ -68,7 +68,7 @@
       overlays.terraria-server = final: prev: {
         terraria-server = prev.terraria-server.overrideAttrs (
           finalAttrs: previousAttrs: rec {
-            version = "1.4.5.0";
+            version = "1.4.5.2";
             urlVersion = prev.lib.replaceStrings [ "." ] [ "" ] version;
             src = prev.fetchurl {
               url = "https://terraria.org/api/download/pc-dedicated-server/terraria-server-${urlVersion}.zip";
