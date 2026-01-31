@@ -69,5 +69,16 @@
         useACME = true;
       };
     };
+
+    scibot = {
+      enable = true;
+      configFile = config.age.secrets."scibot-config.toml".path;
+      apiPort = 5001;
+      nginx = {
+        enable = true;
+        virtualHost = "scibot.kelw.ing";
+        useACME = true;
+      };
+    };
   };
 }
