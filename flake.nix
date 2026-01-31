@@ -51,6 +51,7 @@
             {
               nixpkgs.overlays = [
                 impostor.overlays.default
+                scibot.overlays.default
                 self.overlays.terraria-server
               ];
             }
@@ -68,12 +69,26 @@
       overlays.terraria-server = final: prev: {
         terraria-server = prev.terraria-server.overrideAttrs (
           finalAttrs: previousAttrs: rec {
-            version = "1.4.5.2";
+            version = "1.4.5.3";
             urlVersion = prev.lib.replaceStrings [ "." ] [ "" ] version;
             src = prev.fetchurl {
               url = "https://terraria.org/api/download/pc-dedicated-server/terraria-server-${urlVersion}.zip";
-              sha256 = "sha256-KY41D2fTvpBaXKbXZ3s3M3X52eMWiCRcPlCQJmqtCyM=";
+              sha256 = "sha256-5W6XpGaWQTs9lSy1UJq60YR6mfvb3LTts9ppK05XNCg=";
             };
+            installPhase = ''
+              runHook preInstall
+
+              mkdir -p $out/bin
+              cp -r Linux $out/
+              chmod +x "$out/Linux/TerrariaServer.bin.x86_64"
+              ln -s "$out/Linux/TerrariaServer.bin.x86_64" $out/bin/TerrariaServer
+
+              # use our own SDL3 library
+              rm $out/Linux/lib64/libSDL3.so.0
+              ln -s ${prev.lib.getLib prev.sdl3}/lib/libSDL3.so.0 $out/Linux/lib64/libSDL3.so.0
+
+              runHook postInstall
+            '';
           }
         );
       };
@@ -96,16 +111,6 @@
         };
         packages = {
           vidar = self.nixosConfigurations.vidar.config.system.build.toplevel;
-          terraria-server = pkgs.terraria-server.overrideAttrs (
-            finalAttrs: previousAttrs: rec {
-              version = "1.4.5.2";
-              urlVersion = pkgs.lib.replaceStrings [ "." ] [ "" ] version;
-              src = pkgs.fetchurl {
-                url = "https://terraria.org/api/download/pc-dedicated-server/terraria-server-${urlVersion}.zip";
-                sha256 = "sha256-0yt1LQop3K+AtaqOVrzum1L3gRMPUhMqnFvhNSltsMc=";
-              };
-            }
-          );
         };
       }
     );
