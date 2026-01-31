@@ -94,7 +94,19 @@
             nixd
           ];
         };
-        packages.vidar = self.nixosConfigurations.vidar.config.system.build.toplevel;
+        packages = {
+          vidar = self.nixosConfigurations.vidar.config.system.build.toplevel;
+          terraria-server = pkgs.terraria-server.overrideAttrs (
+            finalAttrs: previousAttrs: rec {
+              version = "1.4.5.2";
+              urlVersion = pkgs.lib.replaceStrings [ "." ] [ "" ] version;
+              src = pkgs.fetchurl {
+                url = "https://terraria.org/api/download/pc-dedicated-server/terraria-server-${urlVersion}.zip";
+                sha256 = "sha256-0yt1LQop3K+AtaqOVrzum1L3gRMPUhMqnFvhNSltsMc=";
+              };
+            }
+          );
+        };
       }
     );
 }
