@@ -771,11 +771,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1769976531,
-        "narHash": "sha256-O0JrdBTnXAHRyLRNKhwM0eJBxkz7C83PbMCBsW+foPg=",
+        "lastModified": 1769978393,
+        "narHash": "sha256-zNME//RQiQq4WDk74Bi53JptUjW0kP0eeKnBlX0eoD0=",
         "owner": "StarCross-Industries",
         "repo": "scibot",
-        "rev": "9479e5b4d49eb0d6d38e020ee8b2bcfb5a826b91",
+        "rev": "d87fd49a21665cfa558ccb8fc163ee4b543a1b6b",
         "type": "github"
       },
       "original": {
