@@ -39,6 +39,7 @@ jobs:
     deploy-server-config:
         runs-on: ubuntu-latest
         needs: build-server-config
+        if: github.event_name != 'pull_request'
         permissions:
           contents: read
           id-token: write
