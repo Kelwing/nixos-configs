@@ -12,6 +12,10 @@
       url = "github:nlewo/comin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     kelwing-homepage.url = "github:Kelwing/kelwing.dev";
     flake-utils.url = "github:numtide/flake-utils";
     agenix.url = "github:ryantm/agenix";
@@ -32,6 +36,7 @@
       scibot,
       impostor,
       launcher,
+      home-manager,
       ...
     }@inputs:
     let
@@ -48,6 +53,7 @@
             impostor.nixosModules.default
             agenix.nixosModules.default
             launcher.nixosModules.default
+            home-manager.nixosModules.home-manager
             {
               nixpkgs.overlays = [
                 impostor.overlays.default

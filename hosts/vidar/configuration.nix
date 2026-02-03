@@ -67,11 +67,14 @@
     };
   };
 
-  programs.zellij = {
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.kelwing = ./home/kelwing/home.nix;
+  };
+
+  programs.bash = {
     enable = true;
-    enableBashIntegration = true;
-    attachExistingSession = true;
-    exitShellOnExit = true;
   };
 
   system.stateVersion = "25.05";

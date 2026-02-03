@@ -24,7 +24,7 @@
     "agenix_2": {
       "inputs": {
         "darwin": "darwin_2",
-        "home-manager": "home-manager_2",
+        "home-manager": "home-manager_3",
         "nixpkgs": "nixpkgs_5",
         "systems": "systems_4"
       },
@@ -45,7 +45,7 @@
     "agenix_3": {
       "inputs": {
         "darwin": "darwin_3",
-        "home-manager": "home-manager_3",
+        "home-manager": "home-manager_4",
         "nixpkgs": "nixpkgs_8",
         "systems": "systems_6"
       },
@@ -416,6 +416,27 @@
     "home-manager_2": {
       "inputs": {
         "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1769580047,
+        "narHash": "sha256-tNqCP/+2+peAXXQ2V8RwsBkenlfWMERb+Uy6xmevyhM=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "366d78c2856de6ab3411c15c1cb4fb4c2bf5c826",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-25.11",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager_3": {
+      "inputs": {
+        "nixpkgs": [
           "launcher",
           "agenix",
           "nixpkgs"
@@ -435,7 +456,7 @@
         "type": "github"
       }
     },
-    "home-manager_3": {
+    "home-manager_4": {
       "inputs": {
         "nixpkgs": [
           "scibot",
@@ -713,6 +734,7 @@
         "comin": "comin",
         "determinate": "determinate",
         "flake-utils": "flake-utils",
+        "home-manager": "home-manager_2",
         "impostor": "impostor",
         "kelwing-homepage": "kelwing-homepage",
         "launcher": "launcher",
