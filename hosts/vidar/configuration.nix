@@ -67,5 +67,12 @@
     };
   };
 
+  programs.zellij = {
+    enable = true;
+    enableBashIntegration = true;
+    attachExistingSession = true;
+    exitShellOnExit = true;
+  };
+
   system.stateVersion = "25.05";
 }
