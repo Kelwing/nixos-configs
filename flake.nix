@@ -71,15 +71,15 @@
       # git ls-files -z '*.nix' | xargs -0 -r nix fmt
       # To check formatting:
       # git ls-files -z '*.nix' | xargs -0 -r nix develop --command nixfmt --check
-      formatter.${system} = inputs.nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
+      formatter.${system} = inputs.nixpkgs.legacyPackages.${system}.nixfmt;
       overlays.terraria-server = final: prev: {
         terraria-server = prev.terraria-server.overrideAttrs (
           finalAttrs: previousAttrs: rec {
-            version = "1.4.5.3";
+            version = "1.4.5.4";
             urlVersion = prev.lib.replaceStrings [ "." ] [ "" ] version;
             src = prev.fetchurl {
               url = "https://terraria.org/api/download/pc-dedicated-server/terraria-server-${urlVersion}.zip";
-              sha256 = "sha256-5W6XpGaWQTs9lSy1UJq60YR6mfvb3LTts9ppK05XNCg=";
+              sha256 = "sha256-VLBjt8t3Z/aVZJs9gfiQLEHVx0/CsgNiaO5nBrKysHI=";
             };
             installPhase = ''
               runHook preInstall
@@ -104,6 +104,7 @@
       let
         pkgs = import nixpkgs {
           inherit system;
+          overlays = [ self.overlays.terraria-server ];
         };
       in
       {
@@ -117,6 +118,7 @@
         };
         packages = {
           vidar = self.nixosConfigurations.vidar.config.system.build.toplevel;
+          inherit (pkgs) terraria-server;
         };
       }
     );
