@@ -58,7 +58,6 @@
               nixpkgs.overlays = [
                 impostor.overlays.default
                 scibot.overlays.default
-                self.overlays.terraria-server
               ];
             }
             configPath
@@ -72,39 +71,12 @@
       # To check formatting:
       # git ls-files -z '*.nix' | xargs -0 -r nix develop --command nixfmt --check
       formatter.${system} = inputs.nixpkgs.legacyPackages.${system}.nixfmt;
-      overlays.terraria-server = final: prev: {
-        terraria-server = prev.terraria-server.overrideAttrs (
-          finalAttrs: previousAttrs: rec {
-            version = "1.4.5.4";
-            urlVersion = prev.lib.replaceStrings [ "." ] [ "" ] version;
-            src = prev.fetchurl {
-              url = "https://terraria.org/api/download/pc-dedicated-server/terraria-server-${urlVersion}.zip";
-              sha256 = "sha256-VLBjt8t3Z/aVZJs9gfiQLEHVx0/CsgNiaO5nBrKysHI=";
-            };
-            installPhase = ''
-              runHook preInstall
-
-              mkdir -p $out/bin
-              cp -r Linux $out/
-              chmod +x "$out/Linux/TerrariaServer.bin.x86_64"
-              ln -s "$out/Linux/TerrariaServer.bin.x86_64" $out/bin/TerrariaServer
-
-              # use our own SDL3 library
-              rm $out/Linux/lib64/libSDL3.so.0
-              ln -s ${prev.lib.getLib prev.sdl3}/lib/libSDL3.so.0 $out/Linux/lib64/libSDL3.so.0
-
-              runHook postInstall
-            '';
-          }
-        );
-      };
     }
     // flake-utils.lib.eachDefaultSystem (
       system:
       let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ self.overlays.terraria-server ];
         };
       in
       {

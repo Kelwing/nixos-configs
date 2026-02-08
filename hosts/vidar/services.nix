@@ -39,6 +39,7 @@
       openFirewall = true;
       messageOfTheDay = "Hello gays";
       autoCreatedWorldSize = "large";
+      worldPath = "/var/lib/terraria/floofs-master.wld";
     };
 
     impostor = {
