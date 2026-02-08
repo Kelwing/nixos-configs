@@ -38,6 +38,7 @@
       maxPlayers = 16;
       openFirewall = true;
       messageOfTheDay = "Hello gays";
+      autoCreatedWorldSize = "large";
     };
 
     impostor = {
