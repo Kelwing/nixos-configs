@@ -79,7 +79,7 @@
             urlVersion = prev.lib.replaceStrings [ "." ] [ "" ] version;
             src = prev.fetchurl {
               url = "https://terraria.org/api/download/pc-dedicated-server/terraria-server-${urlVersion}.zip";
-              sha256 = "sha256-1mc6ay160z4i3j39wjrs3d60sx9hv8ghndz7cagj9gn10kjd6qh6";
+              sha256 = "sha256-VLBjt8t3Z/aVZJs9gfiQLEHVx0/CsgNiaO5nBrKysHI=";
             };
             installPhase = ''
               runHook preInstall
