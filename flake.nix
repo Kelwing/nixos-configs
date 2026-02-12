@@ -75,11 +75,11 @@
       overlays.terraria-server = final: prev: {
         terraria-server = prev.terraria-server.overrideAttrs (
           finalAttrs: previousAttrs: rec {
-            version = "1.4.5.4";
+            version = "1.4.5.5";
             urlVersion = prev.lib.replaceStrings [ "." ] [ "" ] version;
             src = prev.fetchurl {
               url = "https://terraria.org/api/download/pc-dedicated-server/terraria-server-${urlVersion}.zip";
-              sha256 = "sha256-VLBjt8t3Z/aVZJs9gfiQLEHVx0/CsgNiaO5nBrKysHI=";
+              sha256 = "sha256-1mc6ay160z4i3j39wjrs3d60sx9hv8ghndz7cagj9gn10kjd6qh6";
             };
             installPhase = ''
               runHook preInstall
