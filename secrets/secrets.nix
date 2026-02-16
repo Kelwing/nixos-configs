@@ -12,4 +12,5 @@ in
 {
   "scibot-config.toml.age".publicKeys = users ++ systems;
   "launcher-api-config.json.age".publicKeys = users ++ systems;
+  "reg_token.age".publicKeys = users ++ systems;
 }

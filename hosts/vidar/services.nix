@@ -1,4 +1,7 @@
 { config, ... }:
+let
+  tuwunelPort = 8008;
+in
 {
   services = {
     openssh = {
@@ -13,13 +16,31 @@
 
     nginx = {
       enable = true;
-      virtualHosts."stream.kelw.ing" = {
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString config.services.owncast.port}";
-          recommendedProxySettings = true;
+      virtualHosts = {
+        "rpld.io" = {
+          listen = [
+            {
+              addr = "0.0.0.0";
+              port = 443;
+              ssl = true;
+            }
+            {
+              # For federation
+              addr = "0.0.0.0";
+              port = 8448;
+              ssl = true;
+            }
+          ];
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:${toString tuwunelPort}";
+            recommendedProxySettings = true;
+          };
+          extraConfig = ''
+            client_max_body_size 100M;
+          '';
+          enableACME = true;
+          onlySSL = true;
         };
-        forceSSL = true;
-        enableACME = true;
       };
     };
 
@@ -55,11 +76,6 @@
       };
     };
 
-    owncast = {
-      enable = true;
-      openFirewall = true;
-    };
-
     launcherapi = {
       enable = true;
       configFile = config.age.secrets."launcher-api-config.json".path;
@@ -81,5 +97,25 @@
         useACME = true;
       };
     };
+
+    matrix-tuwunel = {
+      enable = true;
+      settings = {
+        global = {
+          server_name = "rpld.io";
+          new_user_displayname_suffix = "✨";
+          address = [
+            "127.0.0.1"
+            "::1"
+          ];
+          port = [ tuwunelPort ];
+          allow_registration = true;
+          registration_token_file = config.age.secrets."reg_token".path;
+          allow_encryption = true;
+          encryption_enabled_by_default_for_room_type = "all";
+        };
+      };
+    };
+
   };
 }

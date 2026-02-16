@@ -53,6 +53,13 @@
     defaults.email = "kelwing@kelnet.org";
   };
 
+  users.groups.tuwunel = { };
+
+  users.users.tuwunel = {
+    group = "tuwunel";
+    isSystemUser = true;
+  };
+
   # secrets
   age.secrets = {
     "scibot-config.toml" = {
@@ -64,6 +71,11 @@
     "launcher-api-config.json" = {
       file = ../../secrets/launcher-api-config.json.age;
       mode = "604";
+    };
+    "reg_token" = {
+      file = ../../secrets/reg_token.age;
+      owner = "tuwunel";
+      group = "tuwunel";
     };
   };
 
