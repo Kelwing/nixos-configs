@@ -32,6 +32,7 @@
       allowedTCPPorts = [
         80
         443
+        8448
       ];
     };
   };
