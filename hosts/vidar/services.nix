@@ -113,8 +113,20 @@ in
           registration_token_file = config.age.secrets."reg_token".path;
           allow_encryption = true;
           encryption_enabled_by_default_for_room_type = "all";
+          turn_uris = [
+            "turn:rpld.io?transport=udp"
+            "turn:rpld.io?transport=tcp"
+          ];
+          turn_secret_file = config.age.secrets."turn-secret-tuwunel".path;
         };
       };
+    };
+
+    coturn = {
+      enable = true;
+      use-auth-secret = true;
+      static-auth-secret-file = config.age.secrets."turn-secret".path;
+      realm = "rpld.io";
     };
 
   };

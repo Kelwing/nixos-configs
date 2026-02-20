@@ -33,6 +33,12 @@
         80
         443
         8448
+        3478
+        5349
+      ];
+      allowedUDPPorts = [
+        3478
+        5349
       ];
     };
   };
@@ -77,6 +83,18 @@
       file = ../../secrets/reg_token.age;
       owner = "tuwunel";
       group = "tuwunel";
+    };
+    "turn-secret-tuwunel" = {
+      file = ../../secrets/turn-secret.age;
+      mode = "440";
+      owner = "tuwunel";
+      group = "tuwunel";
+    };
+    "turn-secret" = {
+      file = ../../secrets/turn-secret.age;
+      mode = "440";
+      owner = "turnserver";
+      group = "turnserver";
     };
   };
 
