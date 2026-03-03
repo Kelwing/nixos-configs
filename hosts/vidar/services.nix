@@ -74,6 +74,11 @@ in
         virtualHost = "impostor.kelw.ing";
         useACME = true;
       };
+      extraSettings = {
+        AntiCheat = {
+          ForbidProtocolExtensions = false;
+        };
+      };
     };
 
     launcherapi = {
