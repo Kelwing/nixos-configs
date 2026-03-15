@@ -10,7 +10,7 @@ on:
 
 jobs:
     build-server-config:
-        runs-on: ubuntu-latest
+        runs-on: [digitalocean, size-s-8vcpu-16gb-amd]
         permissions:
             contents: read
             id-token: write
