@@ -22,6 +22,7 @@
     scibot.url = "github:StarCross-Industries/scibot";
     impostor.url = "github:Kelwing/impostor-flake";
     launcher.url = "github:Kelwing/AmongUsLauncherAPI";
+    srvos.url = "github:nix-community/srvos";
   };
 
   # Flake outputs
@@ -37,6 +38,7 @@
       impostor,
       launcher,
       home-manager,
+      srvos,
       ...
     }@inputs:
     let
@@ -47,6 +49,7 @@
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
+            srvos.nixosModules.server
             inputs.determinate.nixosModules.default
             kelwing-homepage.nixosModules.default
             scibot.nixosModules.default
