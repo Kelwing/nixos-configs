@@ -49,7 +49,7 @@
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
-            srvos.nixosModules.server
+            # srvos.nixosModules.server
             inputs.determinate.nixosModules.default
             kelwing-homepage.nixosModules.default
             scibot.nixosModules.default
