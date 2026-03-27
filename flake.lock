@@ -63,27 +63,6 @@
         "type": "github"
       }
     },
-    "comin": {
-      "inputs": {
-        "flake-compat": "flake-compat",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1770328441,
-        "narHash": "sha256-v3rNKKUg+pWInBlJVYBMxLbImpdwLlKnjJ8rPp6IR8I=",
-        "owner": "nlewo",
-        "repo": "comin",
-        "rev": "a651f36e6a211be6d3f51ffffe9cb2bd9a4a3cef",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nlewo",
-        "repo": "comin",
-        "type": "github"
-      }
-    },
     "crane": {
       "locked": {
         "lastModified": 1767744144,
@@ -244,22 +223,6 @@
     "flake-compat": {
       "flake": false,
       "locked": {
-        "lastModified": 1765121682,
-        "narHash": "sha256-4VBOP18BFeiPkyhy9o4ssBNQEvfvv1kXkasAYd0+rrA=",
-        "owner": "NixOS",
-        "repo": "flake-compat",
-        "rev": "65f23138d8d09a92e30f1e5c87611b23ef451bf3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
-    "flake-compat_2": {
-      "flake": false,
-      "locked": {
         "lastModified": 1696426674,
         "narHash": "sha256-kvjfFW7WAETZlt09AgDn1MrtKzP7t90Vf7vypd3OL1U=",
         "owner": "edolstra",
@@ -368,7 +331,7 @@
     },
     "git-hooks-nix": {
       "inputs": {
-        "flake-compat": "flake-compat_2",
+        "flake-compat": "flake-compat",
         "gitignore": [
           "determinate",
           "nix"
@@ -700,16 +663,18 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1770464364,
-        "narHash": "sha256-z5NJPSBwsLf/OfD8WTmh79tlSU8XgIbwmk6qB1/TFzY=",
-        "rev": "23d72dabcb3b12469f57b37170fcbc1789bd7457",
-        "revCount": 907408,
-        "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.2511.907408%2Brev-23d72dabcb3b12469f57b37170fcbc1789bd7457/019c3bd0-8a76-71e4-8c0e-ad25a770ebdf/source.tar.gz"
+        "lastModified": 1774563004,
+        "narHash": "sha256-SJkpxxntpUzSJnkqR9eAozhQZILLfHf6h0bMMy07suY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4f0612f75fd39379d63cf59d3b9078dae6137706",
+        "type": "github"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://flakehub.com/f/NixOS/nixpkgs/0"
+        "owner": "NixOS",
+        "ref": "release-25.11",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nixpkgs_8": {
@@ -747,7 +712,6 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
-        "comin": "comin",
         "determinate": "determinate",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager_2",
@@ -810,11 +774,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1774566474,
-        "narHash": "sha256-W0LsM3yCza82VD2MBsSxbTxP3EzjTuSJuS71DINM7K8=",
+        "lastModified": 1774573397,
+        "narHash": "sha256-QrRYDhgJ1Y3HRie0DLcuIzqHbSJruedCnfDkih1JpFo=",
         "owner": "StarCross-Industries",
         "repo": "scibot",
-        "rev": "4c3beb08eeab788665a058346be7f663a97006b1",
+        "rev": "99807a89bbb3a4f597568a77c80ef447301e14d2",
         "type": "github"
       },
       "original": {

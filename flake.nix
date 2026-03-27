@@ -1,15 +1,20 @@
 {
   description = "my server nixos configurations";
 
+  nixConfig = {
+    extra-substituters = [
+      "https://install.determinate.systems"
+    ];
+    extra-trusted-public-keys = [
+      "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
+    ];
+  };
+
   # Flake inputs
   inputs = {
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0"; # Stable Nixpkgs (use 0.1 for unstable)
+    nixpkgs.url = "github:NixOS/nixpkgs/release-25.11";
     determinate = {
       url = "https://flakehub.com/f/DeterminateSystems/determinate/3"; # Determinate 3.*
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    comin = {
-      url = "github:nlewo/comin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
@@ -29,7 +34,6 @@
   outputs =
     {
       self,
-      comin,
       kelwing-homepage,
       nixpkgs,
       flake-utils,
@@ -121,6 +125,7 @@
         };
         packages = {
           vidar = self.nixosConfigurations.vidar.config.system.build.toplevel;
+          vidarVm = self.nixosConfigurations.vidar.config.system.build.vm;
           inherit (pkgs) terraria-server;
         };
       }
