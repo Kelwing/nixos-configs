@@ -40,20 +40,13 @@
     services."rust-motd" = {
       script = ''
         set -eu
-        ${pkgs.rust-motd}/bin/rust-motd /etc/motd.kdl
+        ${pkgs.rust-motd}/bin/rust-motd /etc/motd.kdl > /etc/motd
       '';
       serviceConfig = {
         Type = "oneshot";
         User = "root";
       };
     };
-  };
-
-  cron = {
-    enable = true;
-    systemCronJobs = [
-      "*/5 * * * *  root  ${pkgs.rust-motd}/bin/rust-motd /etc/motd.kdl > /etc/motd"
-    ];
   };
 
   services.openssh.settings.PrintMotd = true;
