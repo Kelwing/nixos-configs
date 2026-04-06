@@ -28,6 +28,27 @@
     '';
   };
 
+  systemd = {
+    timers."rust-motd" = {
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnBootSec = "5m";
+        OnUnitActiveSec = "5m";
+        Unit = "rust-motd.service";
+      };
+    };
+    services."rust-motd" = {
+      script = ''
+        set -eu
+        ${pkgs.rust-motd}/bin/rust-motd /etc/motd.kdl
+      '';
+      serviceConfig = {
+        Type = "oneshot";
+        User = "root";
+      };
+    };
+  };
+
   cron = {
     enable = true;
     systemCronJobs = [
