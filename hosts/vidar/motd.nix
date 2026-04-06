@@ -34,4 +34,6 @@
       "*/5 * * * *  root  ${pkgs.rust-motd}/bin/rust-motd /etc/motd.kdl > /etc/motd"
     ];
   };
+
+  services.openssh.settings.PrintMotd = true;
 }
