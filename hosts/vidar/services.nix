@@ -133,6 +133,5 @@ in
       static-auth-secret-file = config.age.secrets."turn-secret".path;
       realm = "rpld.io";
     };
-
   };
 }
