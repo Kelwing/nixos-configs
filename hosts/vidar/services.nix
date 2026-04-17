@@ -142,6 +142,7 @@ in
         "kelwing"
         "Ar2ro"
       ];
+      saveName = "2026";
     };
   };
 }
