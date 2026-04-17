@@ -54,7 +54,7 @@ in
     };
 
     terraria = {
-      enable = true;
+      enable = false;
       port = 7777;
       maxPlayers = 16;
       openFirewall = true;
@@ -132,6 +132,16 @@ in
       use-auth-secret = true;
       static-auth-secret-file = config.age.secrets."turn-secret".path;
       realm = "rpld.io";
+    };
+
+    factorio = rec {
+      enable = true;
+      openFirewall = true;
+      allowedPlayers = [ ] ++ admins;
+      admins = [
+        "kelwing"
+        "Ar2ro"
+      ];
     };
   };
 }
