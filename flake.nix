@@ -51,7 +51,9 @@
         configPath:
         inputs.nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs factorioLib;
+          };
           modules = [
             srvos.nixosModules.server
             inputs.determinate.nixosModules.default
@@ -71,6 +73,7 @@
             configPath
           ];
         };
+      factorioLib = inputs.nixpkgs.legacyPackages.${system}.callPackage ./lib/factorio { };
     in
     {
       nixosConfigurations.vidar = makeNixosSystem ./hosts/vidar/configuration.nix;

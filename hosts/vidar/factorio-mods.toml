@@ -1,0 +1,19 @@
+[[mod]]
+name = "AutoDeconstruct"
+download_id = "69a0d19734a726c6c089b0ea"
+hash = "sha256:130nz4vykc00j5m3bmx83p82gl3c5kvahn15b7vj7q1nxflhxcj0"
+
+[[mod]]
+name = "inventory-repair"
+download_id = "68158760b96bba5fc63ec4e2"
+hash = "sha256:0bkn1i0w92n5r179vy247wpc8j2psp9ymimim919403nmcfk1vsy"
+
+[[mod]]
+name = "resourceMarker"
+download_id = "67538aae129d9bcaf50a5a4a"
+hash = "sha256:0hpd6dpvg3jan5mf5mhzyidx5wg71lgqciz02wir7zj66091zq54"
+
+[[mod]]
+name = "even-distribution"
+download_id = "6717f7ef79bf4bb954bf7731"
+hash = "sha256:0jq6qlq9kq8pmrqk7qbl9wz5a96yllc5jrn8g7wb3bycpqfs0hs3"

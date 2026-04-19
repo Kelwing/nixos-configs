@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, factorioLib, ... }:
 let
   tuwunelPort = 8008;
 in
@@ -134,15 +134,20 @@ in
       realm = "rpld.io";
     };
 
-    factorio = rec {
-      enable = true;
-      openFirewall = true;
-      allowedPlayers = [ ] ++ admins;
-      admins = [
-        "kelwing"
-        "Ar2ro"
-      ];
-      saveName = "2026";
-    };
+    factorio =
+      let
+        admins = [
+          "kelwing"
+          "Ar2ro"
+        ];
+      in
+      {
+        enable = true;
+        openFirewall = true;
+        allowedPlayers = [ ] ++ admins;
+        inherit admins;
+        saveName = "2026";
+        mods = factorioLib.mkFactorioModsFromToml ./factorio-mods.toml;
+      };
   };
 }
