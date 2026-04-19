@@ -8,6 +8,7 @@ rec {
     {
       name,
       download_id,
+      version,
       hash ? lib.fakeHash,
     }:
     # Catch the most common failure mode at evaluation time: the caller forgot
@@ -32,7 +33,7 @@ rec {
       src =
         let
           download_url = "/download/${name}/${download_id}";
-          filename = "${name}_${download_id}.zip";
+          filename = "${name}_${version}.zip";
         in
         fetchurl {
           # Give the fixed-output derivation a descriptive name so that if the

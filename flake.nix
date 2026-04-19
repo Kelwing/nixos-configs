@@ -116,6 +116,7 @@
           inherit system;
           overlays = [ self.overlays.terraria-server ];
         };
+        factorio-mods = pkgs.callPackage ./pkgs/factorio-mods { };
       in
       {
         devShells.default = pkgs.mkShell {
@@ -124,6 +125,7 @@
             nixfmt-rfc-style
             nil
             nixd
+            factorio-mods
           ];
         };
         packages = {
