@@ -23,7 +23,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -70,6 +70,9 @@ class ReleaseInfo:
     version: str
     download_url: str  # path, e.g. "/download/AutoDeconstruct/69a0..."
     download_id: str
+    dependencies: list[str] = field(
+        default_factory=list
+    )  # required mod names (excludes base/builtins)
 
     @property
     def authenticated_url(self) -> str:
@@ -88,7 +91,7 @@ class ReleaseInfo:
 
 def fetch_latest_release(name: str) -> ReleaseInfo:
     """Query the mod portal API and return the latest release for `name`."""
-    url = f"{API_BASE}/{name}"
+    url = f"{API_BASE}/{name}/full"
     resp = requests.get(url, timeout=30)
     if resp.status_code == 404:
         sys.exit(f"Error: mod '{name}' not found on the Factorio Mod Portal.")
@@ -107,7 +110,46 @@ def fetch_latest_release(name: str) -> ReleaseInfo:
         version=latest["version"],
         download_url=download_url,
         download_id=download_id,
+        dependencies=parse_dependencies(
+            latest.get("info_json", {}).get("dependencies", [])
+        ),
     )
+
+
+# Built-in mods that ship with Factorio and should never be fetched.
+BUILTIN_MODS = {"base", "elevated-rails", "quality", "space-age"}
+
+
+def parse_dependencies(dep_strings: list[str]) -> list[str]:
+    """
+    Parse Factorio dependency strings and return names of required dependencies.
+
+    Dependency format: "[prefix] mod-name [op version]"
+    Prefixes:
+      (none) — hard required
+      ~      — required, no effect on load order
+      ?      — optional
+      (?)    — hidden optional
+      !      — incompatible
+
+    We only care about required deps (no prefix or ~).
+    """
+    required: list[str] = []
+    for dep in dep_strings:
+        dep = dep.strip()
+        if not dep:
+            continue
+        # Skip optional, hidden-optional, and incompatible
+        if dep.startswith("?") or dep.startswith("(?)") or dep.startswith("!"):
+            continue
+        # Strip the ~ prefix (still required)
+        if dep.startswith("~"):
+            dep = dep[1:].strip()
+        # Extract just the mod name (before any version operator)
+        mod_name = re.split(r"\s+[><=!]", dep)[0].strip()
+        if mod_name and mod_name not in BUILTIN_MODS:
+            required.append(mod_name)
+    return required
 
 
 # ---------- hashing ----------
@@ -213,6 +255,35 @@ def make_entry(name: str, release: ReleaseInfo, nix_hash: str) -> Table:
 # ---------- commands ----------
 
 
+def add_mod_recursive(
+    name: str, path: Path, doc: TOMLDocument, mods: AoT, seen: set[str]
+) -> None:
+    """Add a mod and its required dependencies recursively."""
+    if name in seen:
+        return
+    seen.add(name)
+
+    if find_mod_index(mods, name) is not None:
+        print(f"  '{name}' already present, skipping.")
+        return
+
+    print(f"Fetching mod info for '{name}'...")
+    release = fetch_latest_release(name)
+    print(f"  latest version: {release.version} (download_id={release.download_id})")
+
+    if release.dependencies:
+        print(f"  required dependencies: {', '.join(release.dependencies)}")
+        for dep in release.dependencies:
+            add_mod_recursive(dep, path, doc, mods, seen)
+
+    print(f"  [{name}] downloading and hashing...")
+    nix_hash = download_and_hash(release)
+    print(f"  hash: sha256:{nix_hash}")
+
+    mods.append(make_entry(name, release, nix_hash))
+    print(f"Added '{name}' {release.version}.")
+
+
 def cmd_add(args: argparse.Namespace) -> None:
     path = Path(args.file)
     doc = load_toml(path)
@@ -221,17 +292,9 @@ def cmd_add(args: argparse.Namespace) -> None:
     if find_mod_index(mods, args.name) is not None:
         sys.exit(f"Error: mod '{args.name}' is already present in {path}.")
 
-    print(f"Fetching mod info for '{args.name}'...")
-    release = fetch_latest_release(args.name)
-    print(f"  latest version: {release.version} (download_id={release.download_id})")
-
-    print("  downloading and hashing...")
-    nix_hash = download_and_hash(release)
-    print(f"  hash: sha256:{nix_hash}")
-
-    mods.append(make_entry(args.name, release, nix_hash))
+    seen: set[str] = {m.get("name") for m in mods}
+    add_mod_recursive(args.name, path, doc, mods, seen)
     save_toml(doc, path)
-    print(f"Added '{args.name}' {release.version}.")
 
 
 def cmd_remove(args: argparse.Namespace) -> None:

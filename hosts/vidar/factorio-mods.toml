@@ -1,13 +1,25 @@
 [[mod]]
-name = "AutoDeconstruct"
-download_id = "69a0d19734a726c6c089b0ea"
-hash = "sha256:130nz4vykc00j5m3bmx83p82gl3c5kvahn15b7vj7q1nxflhxcj0"
-version = "1.0.12"
+name = "faster-robots"
+download_id = "6733242ce8af520202274d4a"
+hash = "sha256:0hjqgg2p9mg17wfs7zd4v6j7qki88d8nv7i5dkh4h5ddls1fb09y"
+version = "0.0.4"
+
+[[mod]]
+name = "efficient-robots"
+download_id = "673324b531968893ab64a700"
+hash = "sha256:1nwc7zs9dhld0z005jmb5n39dvvmy0a5b2xnahiswnbvplkv1cs3"
+version = "0.0.4"
+
 [[mod]]
 name = "better-robots"
 download_id = "673324c76d0becd2ce99b8e7"
 hash = "sha256:0f0ix8s27vq6mj87xpqirw9vp96va4sxb2pkq8wwdc26ydc2yg1z"
 version = "0.0.3"
+[[mod]]
+name = "AutoDeconstruct"
+download_id = "69a0d19734a726c6c089b0ea"
+hash = "sha256:130nz4vykc00j5m3bmx83p82gl3c5kvahn15b7vj7q1nxflhxcj0"
+version = "1.0.12"
 [[mod]]
 name = "even-distribution"
 download_id = "6717f7ef79bf4bb954bf7731"
