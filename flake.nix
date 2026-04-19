@@ -117,6 +117,9 @@
           overlays = [ self.overlays.terraria-server ];
         };
         factorio-mods = pkgs.callPackage ./pkgs/factorio-mods { };
+        pythonEnv = pkgs.python3.withPackages (ps: [
+          ps.virtualenv
+        ]);
       in
       {
         devShells.default = pkgs.mkShell {
@@ -126,6 +129,9 @@
             nil
             nixd
             factorio-mods
+            ruff
+            ty
+            pythonEnv
           ];
         };
         packages = {

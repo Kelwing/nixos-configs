@@ -25,7 +25,6 @@ import sys
 import tempfile
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
 from urllib.parse import urlparse
 
 import requests
@@ -58,6 +57,7 @@ def get_credentials() -> tuple[str, str]:
     token = os.environ.get("FACTORIO_TOKEN")
     if not username or not token:
         sys.exit("Error: FACTORIO_USERNAME and FACTORIO_TOKEN must be set.")
+    assert username is not None and token is not None
     return username, token
 
 
@@ -225,7 +225,7 @@ def cmd_add(args: argparse.Namespace) -> None:
     release = fetch_latest_release(args.name)
     print(f"  latest version: {release.version} (download_id={release.download_id})")
 
-    print(f"  downloading and hashing...")
+    print("  downloading and hashing...")
     nix_hash = download_and_hash(release)
     print(f"  hash: sha256:{nix_hash}")
 
@@ -243,6 +243,7 @@ def cmd_remove(args: argparse.Namespace) -> None:
     if idx is None:
         sys.exit(f"Error: mod '{args.name}' not found in {path}.")
 
+    assert idx is not None
     del mods[idx]
     save_toml(doc, path)
     print(f"Removed '{args.name}'.")
