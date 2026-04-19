@@ -28,14 +28,13 @@ rec {
 
       Then rebuild.
     '';
+    let
+      download_url = "/download/${name}/${download_id}";
+      filename = "${name}_${version}.zip";
+    in
     stdenv.mkDerivation {
-      inherit name version;
-      src =
-        let
-          download_url = "/download/${name}/${download_id}";
-          filename = "${name}_${version}.zip";
-        in
-        fetchurl {
+      inherit name version filename;
+      src = fetchurl {
           # Give the fixed-output derivation a descriptive name so that if the
           # store path is missing and Nix has to fall back to the network (which
           # will fail, since the URL requires auth query params we don't have
