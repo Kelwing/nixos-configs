@@ -29,7 +29,7 @@ rec {
       Then rebuild.
     '';
     stdenv.mkDerivation {
-      inherit name;
+      inherit name version;
       src =
         let
           download_url = "/download/${name}/${download_id}";
