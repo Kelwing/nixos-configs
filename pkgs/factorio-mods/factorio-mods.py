@@ -83,7 +83,7 @@ class ReleaseInfo:
         string characters ('?', '&', '='), which the default naming would
         otherwise pull in from the authenticated URL.
         """
-        return f"{self.name}-{self.version}.zip"
+        return f"{self.name}_{self.version}.zip"
 
 
 def fetch_latest_release(name: str) -> ReleaseInfo:
