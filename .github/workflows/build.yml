@@ -32,6 +32,9 @@ jobs:
       - name: Prefetch Factorio Mods
         run: |
           python3 lib/factorio/prefetch_mods.py hosts/vidar/factorio-mods.toml
+        env:
+          FACTORIO_USERNAME: ${{ secrets.FACTORIO_USERNAME }}
+          FACTORIO_TOKEN: ${{ secrets.FACTORIO_TOKEN }}
 
       - name: Build config
         id: build
