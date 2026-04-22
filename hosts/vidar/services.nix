@@ -144,7 +144,10 @@ in
       {
         enable = true;
         openFirewall = true;
-        allowedPlayers = [ ] ++ admins;
+        allowedPlayers = [
+          "crinisus"
+        ]
+        ++ admins;
         inherit admins;
         saveName = "2026";
         mods = factorioLib.mkFactorioModsFromToml ./factorio-mods.toml;

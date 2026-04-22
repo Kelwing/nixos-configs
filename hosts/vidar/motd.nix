@@ -12,7 +12,7 @@
       }
       service-status {
         service display-name="SCI Bot" unit="scibot"
-        service display-name="Terraria" unit="terraria"
+        service display-name="Factorio" unit="factorio"
         service display-name="Tuwunel" unit="tuwunel"
         service display-name="Coturn" unit="coturn"
         service display-name="Impostor" unit="impostor"
