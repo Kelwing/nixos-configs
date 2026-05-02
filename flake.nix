@@ -4,9 +4,11 @@
   nixConfig = {
     extra-substituters = [
       "https://install.determinate.systems"
+      "https://factorio-mods.cachix.org"
     ];
     extra-trusted-public-keys = [
       "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
+      "factorio-mods.cachix.org-1:tNfehrC4UuweAWlOi3Bp1L9KJScrYin8IfbMjsX0zoQ="
     ];
   };
 
@@ -28,6 +30,7 @@
     impostor.url = "github:Kelwing/impostor-flake";
     launcher.url = "github:Kelwing/AmongUsLauncherAPI";
     srvos.url = "github:nix-community/srvos";
+    nix-factorio-mods.url = "github:Kelwing/nix-factorio-mods";
   };
 
   # Flake outputs
@@ -43,6 +46,7 @@
       launcher,
       home-manager,
       srvos,
+      nix-factorio-mods,
       ...
     }@inputs:
     let
@@ -68,6 +72,7 @@
                 impostor.overlays.default
                 scibot.overlays.default
                 self.overlays.terraria-server
+                nix-factorio-mods.overlays.default
               ];
             }
             configPath
@@ -116,7 +121,6 @@
           inherit system;
           overlays = [ self.overlays.terraria-server ];
         };
-        factorio-mods = pkgs.callPackage ./pkgs/factorio-mods { };
         pythonEnv = pkgs.python3.withPackages (ps: [
           ps.virtualenv
         ]);
@@ -128,7 +132,6 @@
             nixfmt-rfc-style
             nil
             nixd
-            factorio-mods
             ruff
             ty
             pythonEnv

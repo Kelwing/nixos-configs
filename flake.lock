@@ -46,7 +46,7 @@
       "inputs": {
         "darwin": "darwin_3",
         "home-manager": "home-manager_4",
-        "nixpkgs": "nixpkgs_8",
+        "nixpkgs": "nixpkgs_9",
         "systems": "systems_6"
       },
       "locked": {
@@ -521,6 +521,24 @@
         "url": "https://flakehub.com/f/DeterminateSystems/nix-src/%2A"
       }
     },
+    "nix-factorio-mods": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_7"
+      },
+      "locked": {
+        "lastModified": 1777740200,
+        "narHash": "sha256-PoO6Z1wFyxMh+zHEYGjaSMpzwqJKIsi4TTOiwa8ThiE=",
+        "owner": "Kelwing",
+        "repo": "nix-factorio-mods",
+        "rev": "ab33422795e6d378bc4ca5d5afe96126536d2144",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Kelwing",
+        "repo": "nix-factorio-mods",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1754028485,
@@ -570,6 +588,22 @@
       }
     },
     "nixpkgs_10": {
+      "locked": {
+        "lastModified": 1767151656,
+        "narHash": "sha256-ujL2AoYBnJBN262HD95yer7QYUmYp5kFZGYbyCCKxq8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "f665af0cdb70ed27e1bd8f9fdfecaf451260fc55",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_11": {
       "locked": {
         "lastModified": 1773826178,
         "narHash": "sha256-RwA0KkNaCDBMDGYef/OjG3Z5B5oRTuV6Zy1iPk3F8Ro=",
@@ -663,6 +697,22 @@
     },
     "nixpkgs_7": {
       "locked": {
+        "lastModified": 1777578337,
+        "narHash": "sha256-Ad49moKWeXtKBJNy2ebiTQUEgdLyvGmTeykAQ9xM+Z4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "15f4ee454b1dce334612fa6843b3e05cf546efab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_8": {
+      "locked": {
         "lastModified": 1774563004,
         "narHash": "sha256-SJkpxxntpUzSJnkqR9eAozhQZILLfHf6h0bMMy07suY=",
         "owner": "NixOS",
@@ -677,7 +727,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_8": {
+    "nixpkgs_9": {
       "locked": {
         "lastModified": 1754028485,
         "narHash": "sha256-IiiXB3BDTi6UqzAZcf2S797hWEPCRZOwyNThJIYhUfk=",
@@ -693,22 +743,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_9": {
-      "locked": {
-        "lastModified": 1767151656,
-        "narHash": "sha256-ujL2AoYBnJBN262HD95yer7QYUmYp5kFZGYbyCCKxq8=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "f665af0cdb70ed27e1bd8f9fdfecaf451260fc55",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -718,7 +752,8 @@
         "impostor": "impostor",
         "kelwing-homepage": "kelwing-homepage",
         "launcher": "launcher",
-        "nixpkgs": "nixpkgs_7",
+        "nix-factorio-mods": "nix-factorio-mods",
+        "nixpkgs": "nixpkgs_8",
         "scibot": "scibot",
         "srvos": "srvos"
       }
@@ -770,15 +805,15 @@
         "agenix": "agenix_3",
         "crane": "crane_2",
         "flake-utils": "flake-utils_4",
-        "nixpkgs": "nixpkgs_9",
+        "nixpkgs": "nixpkgs_10",
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1777216717,
-        "narHash": "sha256-F9Vk7fgZC0TJ8DxT08ZlF5xumDFepNTRLv255S9M0J0=",
+        "lastModified": 1777740507,
+        "narHash": "sha256-FTJ1wbGntjkPYg8yLu9ik3Y8zeQwTtuVIrDLlS34uS8=",
         "owner": "StarCross-Industries",
         "repo": "scibot",
-        "rev": "5448fc25854aa47f3ebb232f99130f227e48088c",
+        "rev": "5bf28c8ad9ded0130eb2df14e1d2fa6e4ebdf189",
         "type": "github"
       },
       "original": {
@@ -789,7 +824,7 @@
     },
     "srvos": {
       "inputs": {
-        "nixpkgs": "nixpkgs_10"
+        "nixpkgs": "nixpkgs_11"
       },
       "locked": {
         "lastModified": 1774219281,

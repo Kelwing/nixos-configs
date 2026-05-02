@@ -29,18 +29,11 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@main
         name: Set up nix cache
 
-      - name: Prefetch Factorio Mods
-        run: |
-          nix develop --command factorio-mods -f hosts/vidar/factorio-mods.toml prefetch
-        env:
-          FACTORIO_USERNAME: ${{ secrets.FACTORIO_USERNAME }}
-          FACTORIO_TOKEN: ${{ secrets.FACTORIO_TOKEN }}
-
       - name: Build config
         id: build
         run: |
           set -e
-          outpath=$(nix build .#vidar --no-link --json | jq -r '.[].outputs.out')
+          outpath=$(nix build .#vidar --accept-flake-config --no-link --json | jq -r '.[].outputs.out')
           echo "::debug::Derivation output path: ${outpath}"
           echo "nix_store_path=${outpath}" >> "$GITHUB_OUTPUT"
 
@@ -74,7 +67,7 @@ jobs:
 
       - name: Copy config to server
         run: |
-          nix copy .#vidar --to ssh://${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+          nix copy .#vidar --accept-flake-config --to ssh://${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
 
       - name: Apply config
         run: |

@@ -1,4 +1,4 @@
-{ config, factorioLib, ... }:
+{ config, pkgs, ... }:
 let
   tuwunelPort = 8008;
 in
@@ -150,7 +150,13 @@ in
         ++ admins;
         inherit admins;
         saveName = "2026";
-        mods = factorioLib.mkFactorioModsFromToml ./factorio-mods.toml;
+        mods = with pkgs.factorioMods; [
+          better-robots
+          AutoDeconstruct
+          even-distribution
+          inventory-repair
+          resourceMarker
+        ];
       };
   };
 }
