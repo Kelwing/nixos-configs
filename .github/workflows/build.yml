@@ -32,7 +32,7 @@ jobs:
       - name: Build config
         id: build
         run: |
-          set -e
+          set -eo pipefail
           outpath=$(nix build .#vidar --accept-flake-config --no-link --json | jq -r '.[].outputs.out')
           echo "::debug::Derivation output path: ${outpath}"
           echo "nix_store_path=${outpath}" >> "$GITHUB_OUTPUT"
