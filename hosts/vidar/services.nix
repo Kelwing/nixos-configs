@@ -149,14 +149,7 @@ in
         ]
         ++ admins;
         inherit admins;
-        saveName = "2026";
-        mods = with pkgs.factorioMods; [
-          better-robots
-          AutoDeconstruct
-          even-distribution
-          inventory-repair
-          resourceMarker
-        ];
+        saveName = "may2026";
       };
   };
 }
