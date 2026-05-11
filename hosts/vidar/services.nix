@@ -146,6 +146,7 @@ in
         openFirewall = true;
         allowedPlayers = [
           "Crinisus"
+          "Glumboman"
         ]
         ++ admins;
         inherit admins;
