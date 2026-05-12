@@ -8,6 +8,14 @@ on:
       GH_TOKEN:
         required: true
 
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  BUCKET_NAME: "kelwing-nix-cache-483691633045-us-east-1-an"
+  AWS_REGION: "us-east-1"
+
 jobs:
   build-server-config:
     runs-on: ubuntu-latest
@@ -20,14 +28,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v6.1.0
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: arn:aws:iam::483691633045:role/nix-actions-cache
+          role-session-name: ${{ github.run_id }}
+
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
         with:
           extra-conf: |
             access-tokens = github.com=${{ secrets.GH_TOKEN }}
-
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-        name: Set up nix cache
+            extra-substituters = s3://${{ env.BUCKET_NAME }}?region=${{ env.AWS_REGION }}
+            extra-trusted-substituters = s3://${{ env.BUCKET_NAME }}?region=${{ env.AWS_REGION }}
+            extra-trusted-public-keys = ${{ vars.NIX_PUBLIC_KEY }}
 
       - name: Build config
         id: build
@@ -36,6 +51,12 @@ jobs:
           outpath=$(nix build .#vidar --accept-flake-config --no-link --json | jq -r '.[].outputs.out')
           echo "::debug::Derivation output path: ${outpath}"
           echo "nix_store_path=${outpath}" >> "$GITHUB_OUTPUT"
+
+      - name: Push to S3 cache
+        run: |
+          nix copy --to "s3://${{ env.BUCKET_NAME }}?region=${{ env.AWS_REGION }}" ${{ steps.build.outputs.nix_store_path }}
+        env:
+          AWS_SIGNING_KEY: ${{ secrets.NIX_SIGNING_KEY }}
 
   deploy-server-config:
     runs-on: ubuntu-latest
@@ -48,14 +69,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v6.1.0
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: arn:aws:iam::483691633045:role/nix-actions-cache
+          role-session-name: ${{ github.run_id }}
+
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
         with:
           extra-conf: |
             access-tokens = github.com=${{ secrets.GH_TOKEN }}
-
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-        name: Set up nix cache
+            extra-substituters = s3://${{ env.BUCKET_NAME }}?region=${{ env.AWS_REGION }}
+            extra-trusted-substituters = s3://${{ env.BUCKET_NAME }}?region=${{ env.AWS_REGION }}
+            extra-trusted-public-keys = ${{ vars.NIX_PUBLIC_KEY }}
 
       - uses: webfactory/ssh-agent@v0.9.1
         with:
