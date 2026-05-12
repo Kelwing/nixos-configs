@@ -507,11 +507,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778612249,
-        "narHash": "sha256-yf+bsqVVrwsD78FxJLYagpVErtNZpWBI9lqYI1X0mSA=",
+        "lastModified": 1778614589,
+        "narHash": "sha256-efvOLUnHh3gXa8/CL/v+SvhAE153VlhRlf7xiCQfnsY=",
         "owner": "Kelwing",
         "repo": "lychee-nix",
-        "rev": "820d01ef56d704f6d9e3c44b9b8e375da6f46ad8",
+        "rev": "6340d5e188f12ab1e91367b8d4e9a2b84861ccbd",
         "type": "github"
       },
       "original": {
