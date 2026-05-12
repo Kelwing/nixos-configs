@@ -64,9 +64,11 @@ jobs:
 
       - name: Push to S3 cache
         run: |
-          nix copy --to "s3://${{ env.BUCKET_NAME }}?region=${{ env.AWS_REGION }}" ${{ steps.build.outputs.nix_store_path }}
+          echo "$NIX_SIGNING_KEY" > /tmp/nix-signing-key
+          nix copy --to "s3://${{ env.BUCKET_NAME }}?region=${{ env.AWS_REGION }}" --secret-key-files /tmp/nix-signing-key ${{ steps.build.outputs.nix_store_path }}
+          rm -f /tmp/nix-signing-key
         env:
-          AWS_SIGNING_KEY: ${{ secrets.NIX_SIGNING_KEY }}
+          NIX_SIGNING_KEY: ${{ secrets.NIX_SIGNING_KEY }}
 
   deploy-server-config:
     runs-on: ubuntu-latest
