@@ -157,6 +157,10 @@ in
       enable = true;
       hostName = "photos.kelw.ing";
       secretsFile = config.age.secrets."lychee-secrets".path;
+      nginx = {
+        enableACME = true;
+        forceSSL = true;
+      };
     };
   };
 }
