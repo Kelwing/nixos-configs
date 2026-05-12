@@ -44,6 +44,16 @@ jobs:
             extra-trusted-substituters = s3://${{ env.BUCKET_NAME }}?region=${{ env.AWS_REGION }}
             extra-trusted-public-keys = ${{ vars.NIX_PUBLIC_KEY }}
 
+      - name: Configure AWS credentials for Nix daemon
+        run: |
+          sudo mkdir -p /root/.aws
+          sudo tee /root/.aws/credentials > /dev/null <<CREDS
+          [default]
+          aws_access_key_id=$AWS_ACCESS_KEY_ID
+          aws_secret_access_key=$AWS_SECRET_ACCESS_KEY
+          aws_session_token=$AWS_SESSION_TOKEN
+          CREDS
+
       - name: Build config
         id: build
         run: |
@@ -84,6 +94,16 @@ jobs:
             extra-substituters = s3://${{ env.BUCKET_NAME }}?region=${{ env.AWS_REGION }}
             extra-trusted-substituters = s3://${{ env.BUCKET_NAME }}?region=${{ env.AWS_REGION }}
             extra-trusted-public-keys = ${{ vars.NIX_PUBLIC_KEY }}
+
+      - name: Configure AWS credentials for Nix daemon
+        run: |
+          sudo mkdir -p /root/.aws
+          sudo tee /root/.aws/credentials > /dev/null <<CREDS
+          [default]
+          aws_access_key_id=$AWS_ACCESS_KEY_ID
+          aws_secret_access_key=$AWS_SECRET_ACCESS_KEY
+          aws_session_token=$AWS_SESSION_TOKEN
+          CREDS
 
       - uses: webfactory/ssh-agent@v0.9.1
         with:
