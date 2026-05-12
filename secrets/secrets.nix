@@ -14,4 +14,5 @@ in
   "launcher-api-config.json.age".publicKeys = users ++ systems;
   "reg_token.age".publicKeys = users ++ systems;
   "turn-secret.age".publicKeys = users ++ systems;
+  "lychee-secrets.age".publicKeys = users ++ systems;
 }

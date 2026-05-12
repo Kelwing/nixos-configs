@@ -88,6 +88,12 @@
       owner = "turnserver";
       group = "turnserver";
     };
+    "lychee-secrets" = {
+      file = ../../secrets/lychee-secrets.age;
+      mode = "440";
+      owner = "lychee";
+      group = "lychee";
+    };
   };
 
   home-manager = {

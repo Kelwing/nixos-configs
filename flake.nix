@@ -31,6 +31,10 @@
     launcher.url = "github:Kelwing/AmongUsLauncherAPI";
     srvos.url = "github:nix-community/srvos";
     nix-factorio-mods.url = "github:Kelwing/nix-factorio-mods";
+    lychee-nix = {
+      url = "github:Kelwing/lychee-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Flake outputs
@@ -47,6 +51,7 @@
       home-manager,
       srvos,
       nix-factorio-mods,
+      lychee-nix,
       ...
     }@inputs:
     let
@@ -67,12 +72,14 @@
             agenix.nixosModules.default
             launcher.nixosModules.default
             home-manager.nixosModules.home-manager
+            lychee-nix.nixosModules.default
             {
               nixpkgs.overlays = [
                 impostor.overlays.default
                 scibot.overlays.default
                 self.overlays.terraria-server
                 nix-factorio-mods.overlays.default
+                lychee-nix.overlays.default
               ];
             }
             configPath

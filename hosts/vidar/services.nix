@@ -152,5 +152,11 @@ in
         inherit admins;
         saveName = "may2026";
       };
+
+    lychee = {
+      enable = true;
+      hostName = "photos.kelw.ing";
+      secretsFile = config.age.secrets."lychee-secrets".path;
+    };
   };
 }
