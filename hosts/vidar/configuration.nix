@@ -71,23 +71,6 @@
       file = ../../secrets/launcher-api-config.json.age;
       mode = "604";
     };
-    "reg_token" = {
-      file = ../../secrets/reg_token.age;
-      owner = "tuwunel";
-      group = "tuwunel";
-    };
-    "turn-secret-tuwunel" = {
-      file = ../../secrets/turn-secret.age;
-      mode = "440";
-      owner = "tuwunel";
-      group = "tuwunel";
-    };
-    "turn-secret" = {
-      file = ../../secrets/turn-secret.age;
-      mode = "440";
-      owner = "turnserver";
-      group = "turnserver";
-    };
     "lychee-secrets" = {
       file = ../../secrets/lychee-secrets.age;
       mode = "440";

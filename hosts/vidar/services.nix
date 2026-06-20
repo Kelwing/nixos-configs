@@ -154,12 +154,13 @@ in
           resourceMarker
           DiscoScience
           factoryplanner
+          multi-team-support
         ];
         extraSettingsFile = config.age.secrets."factorio-settings".path;
       };
 
     lychee = {
-      enable = true;
+      enable = false;
       hostName = "photos.kelw.ing";
       secretsFile = config.age.secrets."lychee-secrets".path;
       nginx = {

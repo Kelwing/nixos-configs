@@ -546,11 +546,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1781986430,
-        "narHash": "sha256-iD2Sk6JI2gzzwTYu89BjZ1HKQYOQBCVe5A4G/eiOKik=",
+        "lastModified": 1781990833,
+        "narHash": "sha256-zznKUr3e4teZjKKulB0bDhK6UQ0DCz6UhVj8m+p3VxA=",
         "owner": "Kelwing",
         "repo": "nix-factorio-mods",
-        "rev": "c54b918dea0f623e1b19fd8d05d686283459f93e",
+        "rev": "ff869b07a9f4ce63d2ab86b2590d768edb94beeb",
         "type": "github"
       },
       "original": {
