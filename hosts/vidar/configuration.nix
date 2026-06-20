@@ -71,12 +71,6 @@
       file = ../../secrets/launcher-api-config.json.age;
       mode = "604";
     };
-    "lychee-secrets" = {
-      file = ../../secrets/lychee-secrets.age;
-      mode = "440";
-      owner = "lychee";
-      group = "lychee";
-    };
     "factorio-settings" = {
       file = ../../secrets/factorio-settings.age;
     };
