@@ -94,6 +94,9 @@
       owner = "lychee";
       group = "lychee";
     };
+    "factorio-settings" = {
+      file = ../../secrets/factorio-settings.age;
+    };
   };
 
   home-manager = {

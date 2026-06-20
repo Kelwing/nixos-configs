@@ -104,7 +104,7 @@ in
     };
 
     matrix-tuwunel = {
-      enable = true;
+      enable = false;
       settings = {
         global = {
           server_name = "rpld.io";
@@ -128,7 +128,7 @@ in
     };
 
     coturn = {
-      enable = true;
+      enable = false;
       use-auth-secret = true;
       static-auth-secret-file = config.age.secrets."turn-secret".path;
       realm = "rpld.io";
@@ -144,13 +144,18 @@ in
       {
         enable = true;
         openFirewall = true;
-        allowedPlayers = [
-          "Crinisus"
-          "Glumboman"
-        ]
-        ++ admins;
         inherit admins;
-        saveName = "may2026";
+        saveName = "june2026";
+        mods = with pkgs.factorioMods; [
+          better-robots
+          AutoDeconstruct
+          even-distribution
+          inventory-repair
+          resourceMarker
+          DiscoScience
+          factoryplanner
+        ];
+        extraSettingsFile = config.age.secrets."factorio-settings".path;
       };
 
     lychee = {

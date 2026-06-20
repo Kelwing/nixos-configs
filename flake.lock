@@ -383,16 +383,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1770260404,
-        "narHash": "sha256-3iVX1+7YUIt23hBx1WZsUllhbmP2EnXrV8tCRbLxHc8=",
+        "lastModified": 1781981105,
+        "narHash": "sha256-/1nNBbA7PrSQpTc9Qazkhl4kIPg+TNl0CjxS3UQJKlw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0d782ee42c86b196acff08acfbf41bb7d13eed5b",
+        "rev": "7bfff44b465909f69a442701293bc0badcf476dc",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
-        "ref": "release-25.11",
+        "ref": "release-26.05",
         "repo": "home-manager",
         "type": "github"
       }
@@ -507,11 +507,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778621717,
-        "narHash": "sha256-AcMjrkxZH3I1NGQqfXlsBIfFEGu2SUy9pmAcadlb944=",
+        "lastModified": 1781986887,
+        "narHash": "sha256-/MTOeMQNtdN+/UAG/L+75q1loGUsdbrgK+djwg2M0OI=",
         "owner": "Kelwing",
         "repo": "lychee-nix",
-        "rev": "8dc76574403eb658d3bbd253ae00caa2fbd7cce2",
+        "rev": "17fc1d30e1dbef9d299877210a9b98a72308862f",
         "type": "github"
       },
       "original": {
@@ -546,11 +546,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1777742515,
-        "narHash": "sha256-xpg4izpkbMDZzqxQ9+c3AXKpCdLOMDvp0E8XKVBcKzQ=",
+        "lastModified": 1781986430,
+        "narHash": "sha256-iD2Sk6JI2gzzwTYu89BjZ1HKQYOQBCVe5A4G/eiOKik=",
         "owner": "Kelwing",
         "repo": "nix-factorio-mods",
-        "rev": "92ce8fdd21e03a4165c9be6037c2aa8020fe1f43",
+        "rev": "c54b918dea0f623e1b19fd8d05d686283459f93e",
         "type": "github"
       },
       "original": {
@@ -733,16 +733,16 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1774563004,
-        "narHash": "sha256-SJkpxxntpUzSJnkqR9eAozhQZILLfHf6h0bMMy07suY=",
+        "lastModified": 1781981101,
+        "narHash": "sha256-3XlH1In6j58OdHDJIJ6lL0GciZ1eda1JrGeI7c277lk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4f0612f75fd39379d63cf59d3b9078dae6137706",
+        "rev": "accaeb8d8470013a2e6daba46e29f1b4d6378b79",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "release-25.11",
+        "ref": "release-26.05",
         "repo": "nixpkgs",
         "type": "github"
       }

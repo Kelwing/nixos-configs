@@ -14,13 +14,13 @@
 
   # Flake inputs
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/release-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-26.05";
     determinate = {
       url = "https://flakehub.com/f/DeterminateSystems/determinate/3"; # Determinate 3.*
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     kelwing-homepage.url = "github:Kelwing/kelwing.dev";
@@ -60,9 +60,6 @@
         configPath:
         inputs.nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            inherit inputs factorioLib;
-          };
           modules = [
             srvos.nixosModules.server
             inputs.determinate.nixosModules.default
@@ -85,7 +82,6 @@
             configPath
           ];
         };
-      factorioLib = inputs.nixpkgs.legacyPackages.${system}.callPackage ./lib/factorio { };
     in
     {
       nixosConfigurations.vidar = makeNixosSystem ./hosts/vidar/configuration.nix;

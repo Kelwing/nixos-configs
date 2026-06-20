@@ -15,4 +15,5 @@ in
   "reg_token.age".publicKeys = users ++ systems;
   "turn-secret.age".publicKeys = users ++ systems;
   "lychee-secrets.age".publicKeys = users ++ systems;
+  "factorio-settings.age".publicKeys = users ++ systems;
 }
