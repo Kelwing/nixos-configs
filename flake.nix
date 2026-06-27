@@ -20,7 +20,7 @@
     kelwing-homepage.url = "github:Kelwing/kelwing.dev";
     flake-utils.url = "github:numtide/flake-utils";
     agenix.url = "github:ryantm/agenix";
-    scibot.url = "github:StarCross-Industries/scibot";
+    scibot.url = "github:StarCross-Industries/scibot/adb5ebc6febc86e7d30212e4f33c8dffdeb30c7e";
     impostor.url = "github:Kelwing/impostor-flake";
     launcher.url = "github:Kelwing/AmongUsLauncherAPI";
     srvos.url = "github:nix-community/srvos";
