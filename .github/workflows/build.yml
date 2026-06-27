@@ -38,7 +38,7 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v31
         with:
-          extra-nix-config: |
+          extra_nix_config: |
             access-tokens = github.com=${{ secrets.GH_TOKEN }}
             extra-substituters = s3://${{ env.BUCKET_NAME }}?region=${{ env.AWS_REGION }}
             extra-trusted-substituters = s3://${{ env.BUCKET_NAME }}?region=${{ env.AWS_REGION }}
