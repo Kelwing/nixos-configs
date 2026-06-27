@@ -63,7 +63,7 @@ in
     };
 
     impostor = {
-      enable = true;
+      enable = false;
       httpServer = {
         enable = true;
       };
@@ -82,7 +82,7 @@ in
     };
 
     launcherapi = {
-      enable = true;
+      enable = false;
       configFile = config.age.secrets."launcher-api-config.json".path;
       listenPort = 5050;
       nginx = {
