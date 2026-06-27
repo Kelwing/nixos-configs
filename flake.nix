@@ -75,6 +75,7 @@
                 impostor.overlays.default
                 scibot.overlays.default
                 self.overlays.terraria-server
+                self.overlays.factorio-headless
                 nix-factorio-mods.overlays.default
                 lychee-nix.overlays.default
               ];
@@ -115,6 +116,16 @@
             '';
           }
         );
+      };
+      overlays.factorio-headless = final: prev: {
+        factorio-headless = prev.factorio-headless.overrideAttrs (oldAttrs: rec {
+          version = "2.0.77";
+          src = prev.fetchurl {
+            name = "factorio_headless_x64-${version}.tar.xz";
+            url = "https://factorio.com/get-download/${version}/headless/linux64";
+            sha256 = "sha256-xO/BFSn3TTfJaTPikeDbc/2fWqRziRPZMBskaAs+lH8=";
+          };
+        });
       };
     }
     // flake-utils.lib.eachDefaultSystem (
