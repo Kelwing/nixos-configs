@@ -3,11 +3,9 @@
 
   nixConfig = {
     extra-substituters = [
-      "https://install.determinate.systems"
       "https://factorio-mods.cachix.org"
     ];
     extra-trusted-public-keys = [
-      "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
       "factorio-mods.cachix.org-1:tNfehrC4UuweAWlOi3Bp1L9KJScrYin8IfbMjsX0zoQ="
     ];
   };
@@ -15,10 +13,6 @@
   # Flake inputs
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/release-26.05";
-    determinate = {
-      url = "https://flakehub.com/f/DeterminateSystems/determinate/3"; # Determinate 3.*
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -62,7 +56,6 @@
           inherit system;
           modules = [
             srvos.nixosModules.server
-            inputs.determinate.nixosModules.default
             kelwing-homepage.nixosModules.default
             scibot.nixosModules.default
             impostor.nixosModules.default
